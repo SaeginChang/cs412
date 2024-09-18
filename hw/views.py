@@ -28,8 +28,8 @@ def home(request):
     # create a dictionary of context variables for the template:
     context = {
         "current_time" : time.ctime(),
-        "letter1" : chr(random.randit(65,90)), # aletter from A to Z
-        "letter2" : chr(random.randit(65,90)),
+        "letter1" : chr(random.randint(65,90)), # aletter from A to Z
+        "letter2" : chr(random.randint(65,90)),
         "number" : random.randint(1,10), # number from 1 to 10
     }
 
