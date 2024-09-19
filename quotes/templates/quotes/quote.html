@@ -1,0 +1,27 @@
+<!-- quotes/templates/quotes/quote.html -->
+
+{% load static %}
+<html>
+    <head>
+        <title>Quotes</title>
+        <link rel="stylesheet" href="/static/styles.css">
+    </head>
+    <body>
+        <header>
+            <h1>Quote</h1>
+            <nav>
+                <ul>
+                    <li><a href="/quotes/">Back</a></li>
+                </ul>
+            </nav>
+        </header>
+    
+        <main>
+            <h1>Uncle Iroh</h1>
+            <h2>Quote of the Day</h2>
+            <p>{{ quote }}</p><br>
+
+            <img id="irohPic" src="{{ image }}" alt="pic">
+        </main>
+    </body>
+</html>

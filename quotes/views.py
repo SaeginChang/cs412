@@ -5,24 +5,91 @@ from django.http import HttpRequest, HttpResponse
 import time
 import random
 
+quotesList = ["When you're in your darkest place, you give yourself hope and that's inner strength.", 
+                        "Life happens wherever you are, whether you make it or not.",
+                        "Sometimes the best way to solve your own problems is to help someone else"]
+    
+imagesList = ["/static/iroh1.jpg",
+                        "/static/iroh2.jpg",
+                        "/static/iroh3.jpg"]
+
 # Create your views here.
-def index(request):
+def quote(request):
     '''
     Function to handle the URL request for /quotes (main page).
-    Delegate redering to the temmplate quotes/index.html
+    Delegate redering to the temmplate quotes/quote.html
     '''
 
     # use this template to reder the response
-    template_name = 'quotes/index.html'
+    template_name = 'quotes/quote.html'
 
-    # create a dictionary of context variables for the template:
+    random_quote = random.choice(quotesList)
+    random_image = random.choice(imagesList)
+
+    # Create the context dictionary with the selected quote and image
     context = {
-        "quotesList" : ["When you're in your darkest place, you give yourself hope and that's inner strength.", 
-                        "Life happens wherever you are, whether you make it or not.",
-                        "Sometimes the best way to solve your own problems is to help someone else"],
-        "imagesList" : ["static/quotes/iroh1.jpg",
-                        "images/iroh2.jpg",
-                        "images/iroh3.jpg"]
+        "quote": random_quote,
+        "image": random_image,
+    }
+
+    # delegate redering work to the template
+    return render(request, template_name, context)
+
+def show_all(request):
+    '''
+    Function to handle the URL request for /show_all.
+    Delegate redering to the template quotes/show_all.html
+    '''
+
+    # use this template to reder the response
+    template_name = 'quotes/show_all.html'
+
+    # Create the context dictionary with the selected quote and image
+    context = {
+        "allQuote": quotesList,
+        "allImage": imagesList,
+    }
+
+    # delegate redering work to the template
+    return render(request, template_name, context)
+
+def about(request):
+    '''
+    Function to handle the URL request for /about.
+    Delegate redering to the template quotes/about.html
+    '''
+
+    # use this template to reder the response
+    template_name = 'quotes/about.html'
+
+    random_quote = random.choice(quotesList)
+    random_image = random.choice(imagesList)
+
+    # Create the context dictionary with the selected quote and image
+    context = {
+        "quote": random_quote,
+        "image": random_image,
+    }
+
+    # delegate redering work to the template
+    return render(request, template_name, context)
+
+def base(request):
+    '''
+    Function to handle the URL request for /base.
+    Delegate redering to the template quotes/base.html
+    '''
+
+    # use this template to reder the response
+    template_name = 'quotes/base.html'
+
+    random_quote = random.choice(quotesList)
+    random_image = random.choice(imagesList)
+
+    # Create the context dictionary with the selected quote and image
+    context = {
+        "quote": random_quote,
+        "image": random_image,
     }
 
     # delegate redering work to the template

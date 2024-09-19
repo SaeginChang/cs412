@@ -1,0 +1,36 @@
+<!-- quotes/templates/quotes/show_all.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Show All Quotes and Images</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Quote and Image Gallery</h1>
+        <nav>
+            <ul>
+                <li><a href="/quotes/">Back</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>All Quotes</h1>
+        <ul>
+            {% for quote in allQuote %}
+                <li>"{{ quote }}"</li>
+            {% endfor %}
+        </ul>
+
+        <h1>All Images</h1>
+        <div class="image-gallery">
+            {% for image in allImage %}
+                <img src="{{ image }}" alt="Uncle Iroh image" class="gallery-image">
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

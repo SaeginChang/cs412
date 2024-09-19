@@ -1,0 +1,22 @@
+<!-- quotes/templates/quotes/base.html -->
+ 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Quotes App Base</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Quotes by Uncle Iroh</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'quote' %}">Quote</a></li>
+                <li><a href="{% url 'show_all' %}">Show All</a></li>
+            </ul>
+        </nav>
+    </header>
+</body>
+</html>
