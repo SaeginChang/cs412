@@ -4,11 +4,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #bc66a9;
 }
 
 header {
-    background-color: #6e1b1b;
+    background-color: #725050;
     color: #251731;
     padding: 1em 0;
     text-align: center;
@@ -41,13 +41,13 @@ main {
     padding: 20px;
     max-width: 900px;
     margin: auto;
-    background-color: #fff;
+    background-color: #795353;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h1, h2 {
-    color: #333;
+    color: #9cc1b0;
 }
 
 ul {
