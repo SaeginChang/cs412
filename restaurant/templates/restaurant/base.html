@@ -1,0 +1,26 @@
+<!-- quotes/templates/restaurant/base.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Restaurant App Base</title>
+    <link rel="stylesheet" href="{% static '/restaurant_styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/restaurant/main">Main</a></li>
+                <li><a href="/restaurant/order/">Order</a></li>
+            </ul>
+        </nav>
+    </header>
+</body>
+</html>
+
+{% block content %}
+<!-- fill in this section with specific page detail -->
+<h1>THIS IS THE BASE PAGE</h1>
+
+{% endblock %}
