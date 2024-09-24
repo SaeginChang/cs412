@@ -50,12 +50,15 @@ def base(request):
     Delegate redering to the template restaurant/base.html
     '''
 
+    pic = "/static/iroh2.jpg"
+
     # use this template to reder the response
     template_name = 'restaurant/base.html'
 
     # create a dictionary of context variables for the template:
     context = {
         "current_time" : time.ctime(),
+        "image": pic,
     }
 
     # delegate redering work to the template
