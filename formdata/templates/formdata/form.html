@@ -1,0 +1,22 @@
+<!-- formdata/templates/form.html 
+Show a basic HTML form to the client. 
+-->
+
+{% extends 'formdata/base.html' %}
+
+{% block content %}
+<!-- fill in this section with specific page detail -->
+<div>
+    <h1> Contact Form</h1>
+
+    <form action="">
+        Name: <input type="text" name="name"><br>
+        Favorite Color: <input type="text"><br>
+        <input type="submit">
+
+    </form>
+
+</div>
+
+
+{% endblock %}
