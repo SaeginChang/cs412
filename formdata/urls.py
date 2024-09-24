@@ -7,6 +7,6 @@ from . import views
 
 # define a list of valid URL patterns:
 urlpatterns = [
-    path(r'', views.show_form, name="show_form"),
-
+    path(r'', views.show_form, name="show_form"), 
+    path(r'submit', views.submit, name="submit"), ## new!
 ]
