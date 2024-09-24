@@ -9,7 +9,7 @@ from . import views
 urlpatterns = [
     path('', views.base, name="base"),
     path(r'main/', views.main, name='main'),
-    path(r'order/', views.order, name='order'),
-    path(r'confirmation/', views.confirmation, name='confirmation'),
+    path(r'submit/', views.submit, name='submit'),
+    # path(r'confirmation/', views.confirmation, name='confirmation'),
 
 ]
