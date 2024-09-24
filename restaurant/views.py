@@ -99,7 +99,7 @@ def show_order(request):
 
     return render(request, template_name, context)
 
-def submit(request):
+def rest_submit(request):
     '''
     Handle the form submission.
     Read the form data from the request,
