@@ -1,9 +1,34 @@
 <!-- quotes/templates/restaurant/confirmation.html -->
+<!--
+a confirmation page to display after the order is placed. 
+The confirmation page will display which items were ordered, 
+the customer information, and the expected time at which the order will be ready 
+(a time to be determined randomly, but within 30-60 minutes of the current date/time
+-->
 {% extends 'restaurant/base.html' %}
 
 {% block content %}
-<!-- fill in this section with specific page detail -->
-<h1>THIS IS THE confirmation PAGE</h1>
+<h1>Order Confirmation for {{ name }}</h1>
 
+<p>Thank you for your order, {{ name }}!</p>
+<p>Your contact information:</p>
+<ul>
+    <li>Phone: {{ phone }}</li>
+    <li>Email: {{ email }}</li>
+</ul>
+
+<h2>Ordered Items:</h2>
+<ul>
+    {% for item in menu_items %}
+        <li>{{ item }}</li>
+    {% endfor %}
+</ul>
+
+{% if special_instructions %}
+    <h3>Special Instructions:</h3>
+    <p>{{ special_instructions }}</p>
+{% endif %}
+
+<h3>Your order will be ready at: {{ order_time }}</h3>
 
 {% endblock %}

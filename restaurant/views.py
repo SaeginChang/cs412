@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 import time
 import random
-from datetime import datetime
+from datetime import datetime, timedelta
 
 daily_specials = {
     "Monday": {
@@ -110,13 +110,22 @@ def rest_submit(request):
 
     if request.POST:
         name = request.POST['name']
-        price = request.POST['price']
-        description = request.POST['description']
+        phone = request.POST.get('phone')
+        email = request.POST.get('email')
+        special_instr = request.POST.get('special_instructions')
+
+        menu_items = request.POST.getlist('menu_item')
+
+        order_time = datetime.now() + timedelta(minutes=random.randint(30,60))
 
         context = {
             'name' : name,
-            'price' : price,
-            'description' : description,
+            'phone' : phone,
+            'email' : email,
+            'menu_items' : menu_items,
+            'special_instr' : special_instr,
+            'order_time' : order_time.strftime('%I:%M %p')
+
         }
 
         return render(request, template_name, context)
