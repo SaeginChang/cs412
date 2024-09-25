@@ -50,7 +50,7 @@ def base(request):
     Delegate redering to the template restaurant/base.html
     '''
 
-    pic = "/static/iroh2.jpg"
+    pic = "/static/noodleSt.jpg"
 
     # use this template to reder the response
     template_name = 'restaurant/base.html'
