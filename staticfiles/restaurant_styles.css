@@ -1,0 +1,185 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #2e8b57; /* Green background */
+    margin: 0;
+    padding: 0;
+    color: #fff; /* White text for contrast */
+}
+
+.container {
+    max-width: 900px;
+    margin: 100px auto; /* Centers the container horizontally and adds space from the header */
+    padding: 30px;
+    background-color: #3cb371; /* Lighter green background for content */
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Center the text inside the container */
+}
+
+/* Header and Navigation */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #006400; /* Dark green for header */
+    padding: 20px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 36px;
+    margin: 0;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.navbar {
+    margin-top: 10px;
+}
+
+.navbar a {
+    color: #ffeb3b; /* Bright yellow links */
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #fff; /* Change color on hover */
+}
+
+/* Restaurant Info Section */
+.restaurant-info {
+    margin: 0 auto;
+}
+
+.restaurant-name {
+    font-size: 48px;
+    color: #ffeb3b; /* Bright yellow for contrast */
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.restaurant-location {
+    font-size: 24px;
+    color: #fff; /* White text for location */
+    margin-bottom: 20px;
+}
+
+/* Table for Hours of Operation */
+.hours-table {
+    width: 80%;
+    margin: 0 auto 20px;
+    border-collapse: collapse;
+    background-color: #2e8b57; /* Green table background to blend with page */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.hours-table th,
+.hours-table td {
+    padding: 15px;
+    text-align: center;
+    border: none;
+    font-size: 18px;
+}
+
+.hours-table th {
+    background-color: #006400; /* Dark green for table headers */
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.hours-table td {
+    color: #fff;
+    background-color: #3cb371; /* Lighter green for table rows */
+}
+
+.hours-table tr:nth-child(even) td {
+    background-color: #2e8b57; /* Slightly darker green for alternate rows */
+}
+
+/* Photo Section */
+.restaurant-photos {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.restaurant-photos h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #ffeb3b; /* Bright yellow for section title */
+    text-transform: uppercase;
+}
+
+.restaurant-photos img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin-top: 15px;
+    transition: transform 0.3s ease;
+}
+
+.restaurant-photos img:hover {
+    transform: scale(1.05);
+}
+
+/* Footer (optional) */
+.footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #006400; /* Dark green for footer */
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-size: 14px;
+}
+
+.footer p {
+    margin: 0;
+    color: #ffeb3b;
+}
+
+.footer a {
+    color: #ffeb3b;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    .restaurant-name {
+        font-size: 36px;
+    }
+
+    .restaurant-location {
+        font-size: 20px;
+    }
+
+    .hours-table {
+        width: 90%;
+    }
+
+    .restaurant-photos img {
+        width: 90%;
+    }
+}
