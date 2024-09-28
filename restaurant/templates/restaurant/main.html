@@ -5,8 +5,57 @@
 {% extends 'restaurant/base.html' %}
 
 {% block content %}
-<!-- fill in this section with specific page detail -->
-<h1>THIS IS THE main PAGE</h1>
-<img id="NoodleSt" src="/static/noodleSt.jpg" alt="pic">
+<div class="restaurant-info">
+    <h1 class="restaurant-name">Noodle St</h1>
+    <h2 class="restaurant-location">627 Commonwealth Ave, Boston, MA</h2>
 
+    <h3>Hours of Operation</h3>
+    <table class="hours-table">
+        <tr>
+            <th>Day</th>
+            <th>Open</th>
+            <th>Close</th>
+        </tr>
+        <tr>
+            <td>Monday</td>
+            <td>11:00 AM</td>
+            <td>10:00 PM</td>
+        </tr>
+        <tr>
+            <td>Tuesday</td>
+            <td>11:00 AM</td>
+            <td>10:00 PM</td>
+        </tr>
+        <tr>
+            <td>Wednesday</td>
+            <td>11:00 AM</td>
+            <td>10:00 PM</td>
+        </tr>
+        <tr>
+            <td>Thursday</td>
+            <td>11:00 AM</td>
+            <td>10:00 PM</td>
+        </tr>
+        <tr>
+            <td>Friday</td>
+            <td>11:00 AM</td>
+            <td>11:00 PM</td>
+        </tr>
+        <tr>
+            <td>Saturday</td>
+            <td>11:00 AM</td>
+            <td>11:00 PM</td>
+        </tr>
+        <tr>
+            <td>Sunday</td>
+            <td>12:00 PM</td>
+            <td>9:00 PM</td>
+        </tr>
+    </table>
+
+    <div class="restaurant-photos">
+        <h3>Our Place</h3>
+        <img id="noodle-st" src='/static/noodleSt.jpg' alt="Noodle St restaurant">
+    </div>
+</div>
 {% endblock %}

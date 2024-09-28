@@ -1,104 +1,185 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #00ccff;
+    font-family: 'Arial', sans-serif;
+    background-color: #2e8b57; /* Green background */
     margin: 0;
     padding: 0;
-    line-height: 1.6;
-}
-
-h1, h2, h3 {
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
+    color: #fff; /* White text for contrast */
 }
 
 .container {
-    width: 80%;
-    max-width: 1000px;
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 100px auto; /* Centers the container horizontally and adds space from the header */
+    padding: 30px;
+    background-color: #3cb371; /* Lighter green background for content */
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Center the text inside the container */
 }
 
-/* Form Styles */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-label {
-    font-weight: bold;
-}
-
-input[type="text"],
-input[type="tel"],
-input[type="email"],
-textarea {
+/* Header and Navigation */
+.header {
+    position: fixed;
+    top: 0;
     width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    box-sizing: border-box;
+    background-color: #006400; /* Dark green for header */
+    padding: 20px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
 }
 
-textarea {
-    resize: none;
+.header h1 {
+    font-size: 36px;
+    margin: 0;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
 }
 
-input[type="checkbox"] {
-    margin-right: 10px;
+.navbar {
+    margin-top: 10px;
 }
 
-input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
+.navbar a {
+    color: #ffeb3b; /* Bright yellow links */
+    text-decoration: none;
+    margin: 0 15px;
     font-size: 18px;
-    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
-input[type="submit"]:hover {
-    background-color: #45a049;
+.navbar a:hover {
+    color: #fff; /* Change color on hover */
 }
 
-/* Confirmation Page Styles */
-ul {
-    list-style-type: none;
-    padding: 0;
+/* Restaurant Info Section */
+.restaurant-info {
+    margin: 0 auto;
 }
 
-ul li {
-    padding: 10px;
-    background-color: #eee;
-    margin: 5px 0;
-    border-radius: 4px;
+.restaurant-name {
+    font-size: 48px;
+    color: #ffeb3b; /* Bright yellow for contrast */
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
-p {
-    font-size: 18px;
-}
-
-h3 {
-    margin-top: 30px;
+.restaurant-location {
     font-size: 24px;
-    color: #555;
+    color: #fff; /* White text for location */
+    margin-bottom: 20px;
 }
 
-/* Responsive Layout */
+/* Table for Hours of Operation */
+.hours-table {
+    width: 80%;
+    margin: 0 auto 20px;
+    border-collapse: collapse;
+    background-color: #2e8b57; /* Green table background to blend with page */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.hours-table th,
+.hours-table td {
+    padding: 15px;
+    text-align: center;
+    border: none;
+    font-size: 18px;
+}
+
+.hours-table th {
+    background-color: #006400; /* Dark green for table headers */
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.hours-table td {
+    color: #fff;
+    background-color: #3cb371; /* Lighter green for table rows */
+}
+
+.hours-table tr:nth-child(even) td {
+    background-color: #2e8b57; /* Slightly darker green for alternate rows */
+}
+
+/* Photo Section */
+.restaurant-photos {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.restaurant-photos h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #ffeb3b; /* Bright yellow for section title */
+    text-transform: uppercase;
+}
+
+.restaurant-photos img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    margin-top: 15px;
+    transition: transform 0.3s ease;
+}
+
+.restaurant-photos img:hover {
+    transform: scale(1.05);
+}
+
+/* Footer (optional) */
+.footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #006400; /* Dark green for footer */
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-size: 14px;
+}
+
+.footer p {
+    margin: 0;
+    color: #ffeb3b;
+}
+
+.footer a {
+    color: #ffeb3b;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
     .container {
-        width: 95%;
+        width: 90%;
     }
 
-    input[type="submit"] {
-        font-size: 16px;
+    .restaurant-name {
+        font-size: 36px;
+    }
+
+    .restaurant-location {
+        font-size: 20px;
+    }
+
+    .hours-table {
+        width: 90%;
+    }
+
+    .restaurant-photos img {
+        width: 90%;
     }
 }
