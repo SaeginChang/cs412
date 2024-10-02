@@ -1,0 +1,21 @@
+<!-- blog/templates/blog/show_all.html -->
+
+<h1>Show all Articles</h1>
+
+<!-- display a context variable called articles -->
+ <!-- {{articles}} -->
+
+ <div>
+    <!-- loop to display each article -->
+    {% for a in articles %}
+    <div>
+        <h2>{{a.title}}</h2>
+        <h3>by {{a.author}} at {{a.published}}</h3>
+
+        <p>
+            {{a.text}}
+        </p>
+    </div>
+
+    {% endfor %}
+ </div>
