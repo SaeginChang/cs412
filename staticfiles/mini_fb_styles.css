@@ -1,0 +1,94 @@
+/* styles-pokemon.css */
+
+/* General settings for body and layout */
+body {
+    background-color: #6baee8;
+    font-family: 'Verdana', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #ffcc01;
+    color: #0056b3;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 5px solid #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    font-size: 3rem;
+    font-family: 'Pokemon Solid', sans-serif;
+    text-transform: uppercase;
+}
+
+/* Grid container for profiles */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Article style for each profile card */
+article {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 2px solid #0056b3;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+article:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Profile image styling */
+article img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    border: 3px solid #ffcc01;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile name and info */
+article h2 {
+    font-size: 1.8rem;
+    margin: 15px 0;
+    color: #0056b3;
+    font-family: 'Arial Black', sans-serif;
+    text-shadow: 1px 1px 2px #ffcc01;
+}
+
+article strong {
+    display: block;
+    font-size: 1.2rem;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* General link style */
+a {
+    color: #ff0000;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Footer style */
+footer {
+    background-color: #ffcc01;
+    color: #0056b3;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
+    border-top: 5px solid #0056b3;
+}
