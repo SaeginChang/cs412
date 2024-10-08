@@ -19,6 +19,9 @@
         <p><strong>Email:</strong> {{ profile.email }}</p>
     </div>
 
+    <!-- Link to create a new status message -->
+    <a href="{% url 'create_status' profile.pk %}">Create Status Message</a>
+
     <h2>Status Messages:</h2>
     <ul>
         {% for status in profile.get_status_messages %}

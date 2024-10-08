@@ -1,17 +1,16 @@
-/* styles-pokemon.css */
-
 /* General settings for body and layout */
 body {
-    background-color: #6baee8;
-    font-family: 'Verdana', sans-serif;
+    background-color: #6baee8; /* Sky blue */
+    font-family: 'Arial', sans-serif;
     color: #333;
     margin: 0;
     padding: 0;
 }
 
+/* Header styling */
 header {
-    background-color: #ffcc01;
-    color: #0056b3;
+    background-color: #ffcc01; /* Bright yellow */
+    color: #0056b3; /* Dark blue */
     padding: 20px;
     text-align: center;
     border-bottom: 5px solid #0056b3;
@@ -22,6 +21,7 @@ header h1 {
     font-size: 3rem;
     font-family: 'Pokemon Solid', sans-serif;
     text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 /* Grid container for profiles */
@@ -32,10 +32,10 @@ header h1 {
     padding: 20px;
 }
 
-/* Article style for each profile card */
+/* Profile card styling */
 article {
     background-color: rgba(255, 255, 255, 0.9);
-    border: 2px solid #0056b3;
+    border: 2px solid #ffcc01; /* Yellow border */
     border-radius: 10px;
     padding: 15px;
     text-align: center;
@@ -53,7 +53,7 @@ article img {
     max-width: 100%;
     height: auto;
     border-radius: 50%;
-    border: 3px solid #ffcc01;
+    border: 3px solid #ffcc01; /* Yellow border for image */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -61,9 +61,9 @@ article img {
 article h2 {
     font-size: 1.8rem;
     margin: 15px 0;
-    color: #0056b3;
+    color: #0056b3; /* Dark blue */
     font-family: 'Arial Black', sans-serif;
-    text-shadow: 1px 1px 2px #ffcc01;
+    text-shadow: 1px 1px 2px #ffcc01; /* Yellow shadow */
 }
 
 article strong {
@@ -75,7 +75,7 @@ article strong {
 
 /* General link style */
 a {
-    color: #ff0000;
+    color: #ff0000; /* Bright red for links */
     text-decoration: none;
 }
 
@@ -85,14 +85,15 @@ a:hover {
 
 /* Footer style */
 footer {
-    background-color: #ffcc01;
-    color: #0056b3;
+    background-color: #ffcc01; /* Bright yellow */
+    color: #0056b3; /* Dark blue */
     text-align: center;
     padding: 10px;
     font-size: 0.9rem;
     border-top: 5px solid #0056b3;
 }
 
+/* Profile page styling */
 .profile-page {
     max-width: 800px;
     margin: 0 auto;
@@ -107,9 +108,10 @@ footer {
     color: #0056b3;
     text-align: center;
     margin-bottom: 20px;
-    text-shadow: 1px 1px 2px #ffcc01;
+    text-shadow: 1px 1px 2px #ffcc01; /* Yellow shadow */
 }
 
+/* Profile image styling */
 .profile-image {
     text-align: center;
     margin-bottom: 20px;
@@ -119,10 +121,11 @@ footer {
     max-width: 300px;
     height: auto;
     border-radius: 50%;
-    border: 5px solid #ffcc01;
+    border: 5px solid #ffcc01; /* Yellow border for image */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Profile details */
 .profile-details {
     text-align: center;
     font-size: 1.2rem;
@@ -134,5 +137,49 @@ footer {
 }
 
 .profile-details strong {
-    color: #0056b3;
+    color: #0056b3; /* Dark blue */
+}
+
+/* Create Profile form styling */
+form {
+    max-width: 400px; /* Set a max width for the form */
+    margin: 0 auto; /* Center the form */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+form div {
+    margin-bottom: 15px; /* Add space between form fields */
+}
+
+form label {
+    display: block; /* Stack labels above fields */
+    font-weight: bold;
+    color: #0056b3; /* Dark blue */
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="url"] {
+    width: 100%; /* Full width input */
+    padding: 10px; /* Padding inside inputs */
+    border: 2px solid #ffcc01; /* Yellow border */
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #ffcc01; /* Yellow button */
+    color: #0056b3; /* Dark blue text */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+form button:hover {
+    background-color: #0056b3; /* Change to dark blue on hover */
+    color: #ffcc01; /* Change text color to yellow */
 }

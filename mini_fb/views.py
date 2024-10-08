@@ -1,11 +1,13 @@
 # mini_fb/views.py
 # define the views for the mini_fb app
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
-
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from .models import * ## import the models 
+
+from django.urls import reverse_lazy, reverse
+from .forms import *
 
 # class-based view
 class ShowAllProfileView(ListView):
@@ -27,3 +29,31 @@ def profile_status_view(request, pk):
     status_messages = profile.get_status_messages()
     print(status_messages, "hhhhhhhhhhhhhhhhh")
     return render(request, 'mini_fb/show_profile.html', {'profile': profile, 'status_messages': status_messages})
+
+class CreateProfileView(CreateView):
+    '''Class based view for creating a new profile'''
+    model = Profile
+    form_class = CreateProfileForm
+    template_name = 'mini_fb/create_profile_form.html'
+    success_url = reverse_lazy('show_all_profiles')
+
+class CreateStatusMessageView(CreateView):
+    form_class = CreateStatusMessageForm
+    template_name = 'mini_fb/create_status_form.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        profile_pk = self.kwargs['pk']
+        context['profile'] = get_object_or_404(Profile, pk=profile_pk)
+        return context
+
+    def form_valid(self, form):
+        profile_pk = self.kwargs['pk']
+        profile = get_object_or_404(Profile, pk=profile_pk)
+        status_message = form.save(commit=False)
+        status_message.profile = profile
+        status_message.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('profile', args=[self.kwargs['pk']])

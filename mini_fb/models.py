@@ -2,6 +2,7 @@
 # Define the data objects for our application
 from django.db import models
 from django.utils import timezone
+from django.urls import reverse
 
 # Create your models here.
 
@@ -17,13 +18,16 @@ class Profile(models.Model):
 
     def __str__(self):
         '''Return a string representation of the object.'''
-
         return f'{self.first_name} {self.last_name}'
     
     def get_status_messages(self):
         '''getting the status message for this profile'''
         status = StatusMessage.objects.filter(profile=self)
         return status
+    
+    def get_absolute_url(self):
+        '''Return the URL to access a detail record for this profile'''
+        return reverse('show_profile', args=[self.pk])
     
 class StatusMessage(models.Model):
     '''Status Message for the Profiles'''
