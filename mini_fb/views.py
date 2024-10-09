@@ -56,4 +56,4 @@ class CreateStatusMessageView(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('profile', args=[self.kwargs['pk']])
+        return reverse('show_profile', args=[self.kwargs['pk']])
