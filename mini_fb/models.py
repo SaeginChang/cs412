@@ -3,6 +3,7 @@
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from django.utils.timezone import now
 
 # Create your models here.
 
@@ -37,3 +38,18 @@ class StatusMessage(models.Model):
 
     def __str__(self):
         return f"{self.profile.first_name} Status: {self.message}"
+    
+    def get_images(self):
+        """
+        return all images related to this status message
+        """
+        return self.image_set.all()
+    
+class Image(models.Model):
+    """Images for the profiles"""
+    status_message = models.ForeignKey(StatusMessage, on_delete=models.CASCADE)
+    image_file = models.ImageField(upload_to='static/')
+    timestamp = models.DateTimeField(default=now)
+
+    def __str__(self):
+        return f"Image {self.id} for {self.status_message}"

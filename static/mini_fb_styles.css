@@ -180,3 +180,21 @@ form button:hover {
     background-color: #1976d2; /* Change to blue on hover */
     color: #ffcc00; /* Change text color to gold */
 }
+
+/* Status message images styling */
+.status-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover; 
+    border-radius: 8px;
+    margin: 5px; 
+}
+
+
+ul {
+    list-style: none; 
+    padding: 0; 
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center; 
+}
