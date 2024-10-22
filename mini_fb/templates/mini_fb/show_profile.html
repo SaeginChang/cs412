@@ -36,6 +36,7 @@
                 <a href="{% url 'delete_status' status.pk %}">Delete</a>
                 <ul>
                     {% for img in status.get_images %}
+                        <!-- <p>{{ img.image_file.name }}</p> -->
                         <img class="status-image" src="/{{ img.image_file.name }}" alt="Image for status">
                     {% endfor %}
                 </ul>
