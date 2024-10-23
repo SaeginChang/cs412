@@ -7,7 +7,7 @@
     <h1>Friend Suggestions for {{ object.first_name }} {{ object.last_name }}</h1>
     <ul>
         {% for suggestion in suggestions %}
-        <li>
+        <li class="friend-suggestion-item">
             <a href="{% url 'show_profile' suggestion.pk %}">
                 {{ suggestion.first_name }} {{suggestion.last_name }}
             </a>

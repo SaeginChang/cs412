@@ -13,22 +13,23 @@
                     <img src="{{ status.profile.image }}" 
                          alt="Profile picture of {{ status.profile.first_name }}" 
                          width="50">
-                    <!-- <p>{{ status.profile.image }}</p> -->
                 {% endif %}
                 
                 <strong>{{ status.profile.first_name }} {{ status.profile.last_name }}</strong>
                 <p>{{ status.message }}</p>
                 
+                {% if status.get_images %}
+                    <ul class="status-images">
+                        {% for img in status.get_images %}
+                            <li>
+                                <img src="{{ img.image_file.url }}" 
+                                     alt="Image for status" 
+                                     class="status-image">
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
                 
-                <ul>
-                    {% for img in status.get_images %}
-                        <li>
-                            <img src="{{ img.image_file.url }}" 
-                                 alt="Image for status" 
-                                 class="status-image">
-                        </li>
-                    {% endfor %}
-                </ul>
                 <small>Posted on: {{ status.timestamp }}</small>
             </li>
         {% empty %}

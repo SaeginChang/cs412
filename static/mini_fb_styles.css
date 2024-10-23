@@ -193,19 +193,23 @@ form button:hover {
 /* News feed styling */
 .news-feed {
     padding: 20px;
-    background-color: #ffffff; /* White background for news feed */
+    background-color: #f5f5f5; /* Light gray background for news feed */
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Each status message styling */
+.news-feed li {
+    background-color: #ffffff; /* White background for each status */
+    border-radius: 8px; /* Rounded corners for status boxes */
+    padding: 15px; /* Padding inside each status */
+    margin-bottom: 15px; /* Space between news feed items */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .news-feed h1 {
     text-align: center;
     color: #d32f2f; /* Dark red */
-}
-
-/* News feed item styling */
-.news-feed li {
-    margin-bottom: 15px; /* Space between news feed items */
 }
 
 /* Style for friend suggestions */
@@ -219,6 +223,8 @@ ul {
 
 .friend-item {
     margin-bottom: 10px; /* Add spacing between friends */
+    display: block;
+    width: 100%;
 }
 
 .friend-item a {
@@ -229,4 +235,35 @@ ul {
 
 .friend-item a:hover {
     text-decoration: underline;
+}
+
+.friend-suggestions ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+}
+
+.friend-suggestion-item {
+    margin-bottom: 10px; /* Space between suggestions */
+    display: flex; /* Align items in a row */
+    justify-content: space-between; /* Space out names and the Add Friend link */
+    align-items: center; /* Center items vertically */
+    padding: 10px; /* Add padding for a nicer touch */
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: background-color 0.3s; /* Smooth background change */
+}
+
+.friend-suggestion-item:hover {
+    background-color: rgba(255, 255, 0.9, 0.8); /* Change background on hover */
+}
+
+.friend-suggestion-item a {
+    color: #1976d2; /* Blue color for links */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+}
+
+.friend-suggestion-item a:hover {
+    text-decoration: underline; /* Underline on hover */
 }
