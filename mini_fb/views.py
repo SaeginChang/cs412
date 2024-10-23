@@ -1,9 +1,9 @@
 # mini_fb/views.py
 # define the views for the mini_fb app
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from .models import * ## import the models 
 
 from django.urls import reverse_lazy, reverse
@@ -76,7 +76,7 @@ class DeleteStatusMessageView(DeleteView):
     context_object_name = 'status_message'
 
     def get_success_url(self):
-        return reverse_lazy('show_profile', kwargs={'pk':self.obejct.profile.pk})
+        return reverse_lazy('show_profile', kwargs={'pk':self.object.profile.pk})
     
 class UpdateStatusMessageView(UpdateView):
     model = StatusMessage
@@ -85,3 +85,30 @@ class UpdateStatusMessageView(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('show_profile', kwargs={'pk': self.object.profile.pk})
+    
+class CreateFriendView(View):
+    def dispatch(self,request, *args, **kwargs):
+        profile = get_object_or_404(Profile, pk=kwargs['pk'])
+        other_profile = get_object_or_404(Profile, pk=kwargs['other_pk'])
+        profile.add_friend(other_profile)
+        return redirect('show_profile', pk=profile.pk)
+    
+class ShowFriendSuggestionsView(DetailView):
+    model = Profile
+    template_name = 'mini_fb/friend_suggestions.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        profile = self.get_object()
+        context['suggestions'] = profile.get_friend_suggestions()
+        return context
+    
+class ShowNewsFeedView(DetailView):
+    model = Profile
+    template_name = 'mini_fb/news_feed.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        profile = self.get_object()
+        context['news_feed'] = profile.get_news_feed()  # Pass news feed to template
+        return context

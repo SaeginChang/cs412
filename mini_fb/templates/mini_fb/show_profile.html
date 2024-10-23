@@ -11,6 +11,7 @@
 
     {% if profile.image %}
     <div class="profile-image">
+        <!-- <p>{{ profile.image }}</p> -->
         <img src="{{ profile.image }}" alt="Profile picture of {{ profile.first_name }}">
     </div>
     {% endif %}
@@ -19,6 +20,9 @@
         <p><strong>City:</strong> {{ profile.city }}</p>
         <p><strong>Email:</strong> {{ profile.email }}</p>
     </div>
+
+    <!-- news feed -->
+    <a href="{% url 'news_feed' profile.pk %}">View News Feed</a>
 
     <!-- Link to create a new status message -->
     <a href="{% url 'create_status' profile.pk %}">Create Status Message</a>
@@ -36,8 +40,7 @@
                 <a href="{% url 'delete_status' status.pk %}">Delete</a>
                 <ul>
                     {% for img in status.get_images %}
-                        <!-- <p>{{ img.image_file.name }}</p> -->
-                        <img class="status-image" src="/{{ img.image_file.name }}" alt="Image for status">
+                        <img class="status-image" src="{{ img.image_file.url }}" alt="Image for status">
                     {% endfor %}
                 </ul>
             </li>
@@ -45,6 +48,23 @@
             <li>No status messages to display.</li>
         {% endfor %}
     </ul>
+
+    <!-- Display list of friends -->
+    <h2>Friends:</h2>
+    <ul>
+        {% for friend in profile.get_friends %}
+            <li class="friend-item">
+                <a href="{% url 'show_profile' friend.pk %}">
+                    {{ friend.first_name }} {{ friend.last_name }}
+                    <br>
+                </a>
+            </li>
+        {% empty %}
+            <li>No friends to display</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'friend_suggestions' profile.pk %}">View Friend Suggestions</a>
 
 </article>
 {% endblock %}
