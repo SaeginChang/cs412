@@ -258,12 +258,17 @@ ul {
     background-color: rgba(255, 255, 0.9, 0.8); /* Change background on hover */
 }
 
+.friend-suggestion-item div {
+    margin-bottom: 5px; /* Space between elements */
+}
+
 .friend-suggestion-item a {
-    color: #1976d2; /* Blue color for links */
-    text-decoration: none; /* Remove underline */
-    font-weight: bold; /* Bold text */
+    display: inline-block; /* Ensure each link is on its own line */
+    color: #1976d2;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .friend-suggestion-item a:hover {
-    text-decoration: underline; /* Underline on hover */
+    text-decoration: underline;
 }

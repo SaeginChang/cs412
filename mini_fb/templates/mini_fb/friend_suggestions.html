@@ -8,10 +8,14 @@
     <ul>
         {% for suggestion in suggestions %}
         <li class="friend-suggestion-item">
-            <a href="{% url 'show_profile' suggestion.pk %}">
-                {{ suggestion.first_name }} {{suggestion.last_name }}
-            </a>
-            <a href="{% url 'add_friend' object.pk suggestion.pk %}">Add Friend</a>
+            <div>
+                <a href="{% url 'show_profile' suggestion.pk %}">
+                    {{ suggestion.first_name }} {{ suggestion.last_name }}
+                </a>
+            </div>
+            <div>
+                <a href="{% url 'add_friend' object.pk suggestion.pk %}">Add Friend</a>
+            </div>
         </li>
         {% empty %}
             <li>No friend suggestions available</li>
