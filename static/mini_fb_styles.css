@@ -1,0 +1,274 @@
+/* General settings for body and layout */
+body {
+    background-color: #e0f7fa; /* Light cyan background */
+    font-family: 'Verdana', sans-serif; /* Clean and modern font */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+header {
+    background-color: #ffeb3b; /* Bright yellow */
+    color: #1976d2; /* Blue */
+    padding: 30px;
+    text-align: center;
+    border-bottom: 6px solid #f57f17; /* Darker yellow for bottom border */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 3rem;
+    font-family: 'Comic Sans MS', cursive; /* Fun, whimsical font */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Grid container for profiles */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust for smaller columns */
+    gap: 15px; /* Reduced gap */
+    padding: 20px;
+}
+
+/* Profile card styling */
+article {
+    background-color: #ffffff; /* White background for cards */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+article:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Profile image styling */
+article img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    border: 5px solid #ffcc00; /* Gold border */
+}
+
+/* Profile name and info */
+article h2 {
+    font-size: 2rem;
+    margin: 10px 0;
+    color: #d32f2f; /* Dark red */
+    font-family: 'Comic Sans MS', cursive; /* Fun font for names */
+}
+
+article strong {
+    display: block;
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* General link style */
+a {
+    color: #1976d2; /* Blue for links */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Footer style */
+footer {
+    background-color: #ffeb3b; /* Bright yellow */
+    color: #1976d2; /* Blue */
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9rem;
+    border-top: 6px solid #f57f17; /* Darker yellow for top border */
+}
+
+/* Profile page styling */
+.profile-page {
+    max-width: 700px; /* Set a max width for the profile page */
+    margin: 20px auto; /* Center the profile page */
+    padding: 20px;
+    background-color: #ffffff; /* White background for profile page */
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header h1 {
+    font-size: 2.5rem;
+    color: #d32f2f; /* Dark red */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Profile image styling */
+.profile-image {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-image img {
+    max-width: 250px;
+    height: auto;
+    border-radius: 50%;
+    border: 5px solid #ffcc00; /* Gold border */
+}
+
+/* Profile details */
+.profile-details {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.profile-details p {
+    margin: 10px 0;
+}
+
+.profile-details strong {
+    color: #d32f2f; /* Dark red for strong text */
+}
+
+/* Create Profile form styling */
+form {
+    max-width: 450px; /* Set a max width for the form */
+    margin: 20px auto; /* Center the form */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+form div {
+    margin-bottom: 15px; /* Space between form fields */
+}
+
+form label {
+    display: block; /* Stack labels above fields */
+    font-weight: bold;
+    color: #1976d2; /* Blue for labels */
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="url"] {
+    width: 100%; /* Full width input */
+    padding: 12px; /* Padding inside inputs */
+    border: 2px solid #ffcc00; /* Gold border */
+    border-radius: 10px; /* Rounded edges */
+}
+
+form button {
+    background-color: #ffcc00; /* Gold button */
+    color: #1976d2; /* Blue text */
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px; /* Rounded button */
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+form button:hover {
+    background-color: #1976d2; /* Change to blue on hover */
+    color: #ffcc00; /* Change text color to gold */
+}
+
+/* Status message images styling */
+.status-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover; 
+    border-radius: 8px;
+    margin: 5px; 
+}
+
+/* News feed styling */
+.news-feed {
+    padding: 20px;
+    background-color: #f5f5f5; /* Light gray background for news feed */
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Each status message styling */
+.news-feed li {
+    background-color: #ffffff; /* White background for each status */
+    border-radius: 8px; /* Rounded corners for status boxes */
+    padding: 15px; /* Padding inside each status */
+    margin-bottom: 15px; /* Space between news feed items */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.news-feed h1 {
+    text-align: center;
+    color: #d32f2f; /* Dark red */
+}
+
+/* Style for friend suggestions */
+ul {
+    list-style: none; 
+    padding: 0; 
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center; 
+}
+
+.friend-item {
+    margin-bottom: 10px; /* Add spacing between friends */
+    display: block;
+    width: 100%;
+}
+
+.friend-item a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #1976d2; /* Blue color for links */
+}
+
+.friend-item a:hover {
+    text-decoration: underline;
+}
+
+.friend-suggestions ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+}
+
+.friend-suggestion-item {
+    margin-bottom: 10px; /* Space between suggestions */
+    display: flex; /* Align items in a row */
+    justify-content: space-between; /* Space out names and the Add Friend link */
+    align-items: center; /* Center items vertically */
+    padding: 10px; /* Add padding for a nicer touch */
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: background-color 0.3s; /* Smooth background change */
+}
+
+.friend-suggestion-item:hover {
+    background-color: rgba(255, 255, 0.9, 0.8); /* Change background on hover */
+}
+
+.friend-suggestion-item div {
+    margin-bottom: 5px; /* Space between elements */
+}
+
+.friend-suggestion-item a {
+    display: inline-block; /* Ensure each link is on its own line */
+    color: #1976d2;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.friend-suggestion-item a:hover {
+    text-decoration: underline;
+}
