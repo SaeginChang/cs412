@@ -1,21 +1,36 @@
 <!-- blog/templates/blog/show_all.html -->
-
-<h1>Show all Articles</h1>
+{% extends 'blog/base.html' %}
 
 <!-- display a context variable called articles -->
- <!-- {{articles}} -->
+<!-- {{articles}}  -->
 
- <div>
-    <!-- loop to display each article -->
+{% block content %}
+<h1>Show all Articles</h1>
+
+<main class="grid-container">
+    <!-- loop to display each Article -->
     {% for a in articles %}
-    <div>
-        <h2>{{a.title}}</h2>
-        <h3>by {{a.author}} at {{a.published}}</h3>
+    <article>
+        <a href="{% url 'article' a.pk %}">
+        <!-- <img src="{{a.image_url}}" alt="{{a.image_url}}">  OLD -->
+        {% if a.image_file %}
+        <img src="{{a.image_file.url}}" alt="{{a.image_file.url}}">
+        {% else %}
+        No image_file available.
+        {% endif %}
+        </a>
 
-        <p>
-            {{a.text}}
-        </p>
-    </div>
+        <div> 
+            <!-- a.pk is the primary key (number) on the Article identified by a -->
+            <h2><a href="{% url 'article' a.pk %}">{{a.title}}</a></h2>
+            <h3>by {{a.author}} at {{a.published}}</h3>
 
+            <p>
+                {{a.text}}
+            </p>
+        </div> 
+    </article>
     {% endfor %}
- </div>
+
+</main>
+{% endblock %}

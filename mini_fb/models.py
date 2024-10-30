@@ -4,6 +4,7 @@ from django.db import models
 from django.utils import timezone
 from django.urls import reverse
 from django.utils.timezone import now
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -58,6 +59,8 @@ class Profile(models.Model):
         friends = self.get_friends()
         all_profiles = [self] + friends
         return StatusMessage.objects.filter(profile__in=all_profiles).order_by('-timestamp')
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     
 class StatusMessage(models.Model):
     '''Status Message for the Profiles'''
