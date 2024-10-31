@@ -60,13 +60,13 @@ class Profile(models.Model):
         all_profiles = [self] + friends
         return StatusMessage.objects.filter(profile__in=all_profiles).order_by('-timestamp')
     
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     
 class StatusMessage(models.Model):
     '''Status Message for the Profiles'''
     timestamp = models.DateTimeField(default=timezone.now)
     message = models.TextField(blank=False)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE,)
 
     def __str__(self):
         return f"{self.profile.first_name} Status: {self.message}"

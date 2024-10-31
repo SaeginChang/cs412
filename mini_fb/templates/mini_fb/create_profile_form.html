@@ -1,37 +1,19 @@
 <!-- mini_fb/templates/mini_fb/create_profile_form.html -->
- {% extends 'mini_fb/base.html' %}
+{% extends 'mini_fb/base.html' %}
 
- {% block content %}
- <h1>Create a New Profile</h1>
-
- <form method="POST" class="profile-form">
+{% block content %}
+<h2>Create Your Profile</h2>
+<form method="post">
     {% csrf_token %}
-
-    <div>
-        <label for="id_first_name">First Name:</label>
-        {{ form.first_name }}
-    </div>
-
-    <div>
-        <label for='id_last_name'>Last Name:</label>
-        {{ form.last_name }}
-    </div>
-
-    <div>
-        <label for="id_city">City:</label>
-        {{ form.city }}
-    </div>
-
-    <div>
-        <label for="id_email">Email:</label>
-        {{ form.email }}
-    </div>
-
-    <div>
-        <label for="id_image">Image URL:</label>
-        {{ form.image }}
-    </div>
-
-    <button type="submit">Create Profile</button>
- </form>
- {% endblock %}
+    
+    <!-- Display fields from the UserCreationForm -->
+    <h3>Account Information</h3>
+    {{ user_form.as_p }}
+    
+    <!-- Display fields from the CreateProfileForm -->
+    <h3>Profile Information</h3>
+    {{ form.as_p }}
+    
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}

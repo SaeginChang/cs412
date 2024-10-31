@@ -14,7 +14,8 @@
                 </a>
             </div>
             <div>
-                <a href="{% url 'add_friend' object.pk suggestion.pk %}">Add Friend</a>
+                <!-- Pass only suggestion.pk to add_friend -->
+                <a href="{% url 'add_friend' suggestion.pk %}">Add Friend</a>
             </div>
         </li>
         {% empty %}

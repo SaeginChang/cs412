@@ -4,7 +4,7 @@
 {% block content %}
 <h1>Create a Status Message</h1>
 
-<form method="POST" action="{% url 'create_status' profile.pk %}" enctype="multipart/form-data">
+<form method="POST" action="{% url 'create_status' %}" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     

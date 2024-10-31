@@ -13,6 +13,20 @@
                 <a href="{% url 'show_all_profiles' %}">All Profiles</a> | 
                 <a href="{% url 'create_profile' %}">Create New Profile</a>
             </nav>
+
+            {% if user.is_authenticated %}
+                <p>Logged in as: {{ user.username }}</p>
+                {% if user.profile %}
+                    <a href="{% url 'show_profile' user.profile.pk %}">My Profile</a>
+                {% endif %}
+                <form action="{% url 'Logout' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'Login' %}">Login</a>
+            {% endif %}
+
         </header>
     
     {% block content %}

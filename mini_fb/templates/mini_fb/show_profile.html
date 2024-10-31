@@ -1,9 +1,9 @@
 <!-- mini_fb/templates/mini_fb/show_profile.html -->
 
 {% extends 'mini_fb/base.html' %}
-{% load static %}
 
 {% block content %}
+
 <article class="profile-page">
     <div class="profile-header">
         <h1>{{ profile.first_name }} {{ profile.last_name }}</h1>
@@ -11,7 +11,6 @@
 
     {% if profile.image %}
     <div class="profile-image">
-        <!-- <p>{{ profile.image }}</p> -->
         <img src="{{ profile.image }}" alt="Profile picture of {{ profile.first_name }}">
     </div>
     {% endif %}
@@ -21,31 +20,40 @@
         <p><strong>Email:</strong> {{ profile.email }}</p>
     </div>
 
-    <!-- news feed -->
-    <a href="{% url 'news_feed' profile.pk %}">View News Feed</a>
-    <br>
+    <!-- Only show these links if the logged-in user owns the profile -->
+    {% if user.is_authenticated and user == profile.user %}
+        <!-- News feed -->
+        <a href="{% url 'news_feed' %}">View News Feed</a>
+        <br>
 
-    <!-- Link to create a new status message -->
-    <a href="{% url 'create_status' profile.pk %}">Create Status Message</a>
-    <br>
+        <!-- Link to create a new status message -->
+        <a href="{% url 'create_status' %}">Create Status Message</a>
+        <br>
 
-    <!-- and update profile -->
-     <a href="{% url 'update_profile' profile.pk %}">Update Profile</a>
+        <!-- Link to update profile -->
+        <a href="{% url 'update_profile' %}">Update Profile</a>
+        <br>
+    {% endif %}
 
     <h2>Status Messages:</h2>
     <ul>
         {% for status in profile.get_status_messages %}
             <li>
                 <strong>{{ status.timestamp }}:</strong> {{ status.message }} <br>
-                <a href="{% url 'update_status' status.pk %}">Update</a> <br>
-                <a href="{% url 'delete_status' status.pk %}">Delete</a>
+
+                <!-- Show update and delete options only to the profile owner -->
+                {% if user.is_authenticated and user == profile.user %}
+                    <a href="{% url 'update_status' status.pk %}">Update</a>
+                    <a href="{% url 'delete_status' status.pk %}">Delete</a>
+                {% endif %}
+
                 <ul>
                     {% for img in status.get_images %}
                         <img class="status-image" src="{{ img.image_file.url }}" alt="Image for status">
                     {% endfor %}
                 </ul>
             </li>
-            {% empty %}
+        {% empty %}
             <li>No status messages to display.</li>
         {% endfor %}
     </ul>
@@ -64,7 +72,10 @@
         {% endfor %}
     </ul>
 
-    <a href="{% url 'friend_suggestions' profile.pk %}">View Friend Suggestions</a>
-
+    <!-- Only show friend suggestions link if the logged-in user owns the profile -->
+    {% if user.is_authenticated and user == profile.user %}
+        <a href="{% url 'friend_suggestions' %}">View Friend Suggestions</a>
+    {% endif %}
 </article>
+
 {% endblock %}
