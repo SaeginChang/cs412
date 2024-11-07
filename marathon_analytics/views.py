@@ -12,7 +12,7 @@ import plotly.graph_objects as go
 class ResultsListView(ListView):
     '''View to show a list of result.'''
 
-    template_name = 'marathon_analytics/result.html'
+    template_name = 'marathon_analytics/results.html'
     model = Result
     context_object_name = 'result'
 

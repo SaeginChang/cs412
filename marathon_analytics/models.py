@@ -57,16 +57,16 @@ def load_data():
     Result.objects.all().delete()
     
     # open the file for reading one line at a time
-    filename = '/Users/azs/Desktop/2023_chicago_results.csv'
+    filename = r"C:\Users\nickj\Documents\Work\CS412\2023_chicago_results.csv"
     f = open(filename) # open the file for reading
     headers = f.readline() # discard the first line containing headers
 
-    # # read a single line:
-    # line = f.readline().strip()
-    # fields = line.split(',')
-    # print(fields)
-    # for i in range(len(fields)):
-    #     print(f'fields[{i}] = {fields[i]}')
+    # read a single line:
+    line = f.readline().strip()
+    fields = line.split(',')
+    print(fields)
+    for i in range(len(fields)):
+        print(f'fields[{i}] = {fields[i]}')
 
     # go through the entire filem one line at a time:
     for line in f:
