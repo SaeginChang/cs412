@@ -1,7 +1,7 @@
 /* General settings for body and layout */
 body {
     background-color: #e0f7fa; /* Light cyan background */
-    font-family: 'Verdana', sans-serif; /* Clean and modern font */
+    font-family: 'Verdana', sans-serif;
     color: #333;
     margin: 0;
     padding: 0;
@@ -10,16 +10,16 @@ body {
 /* Header styling */
 header {
     background-color: #ffeb3b; /* Bright yellow */
-    color: #1976d2; /* Blue */
+    color: #1976d2;
     padding: 30px;
     text-align: center;
-    border-bottom: 6px solid #f57f17; /* Darker yellow for bottom border */
+    border-bottom: 6px solid #f57f17;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
     font-size: 3rem;
-    font-family: 'Comic Sans MS', cursive; /* Fun, whimsical font */
+    font-family: 'Comic Sans MS', cursive;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -27,15 +27,15 @@ header h1 {
 /* Grid container for profiles */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust for smaller columns */
-    gap: 15px; /* Reduced gap */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
     padding: 20px;
 }
 
 /* Profile card styling */
 article {
-    background-color: #ffffff; /* White background for cards */
-    border-radius: 15px; /* Rounded corners */
+    background-color: #ffffff;
+    border-radius: 15px;
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -43,7 +43,7 @@ article {
 }
 
 article:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
+    transform: translateY(-5px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -52,15 +52,15 @@ article img {
     max-width: 100%;
     height: auto;
     border-radius: 50%;
-    border: 5px solid #ffcc00; /* Gold border */
+    border: 5px solid #ffcc00;
 }
 
 /* Profile name and info */
 article h2 {
     font-size: 2rem;
     margin: 10px 0;
-    color: #d32f2f; /* Dark red */
-    font-family: 'Comic Sans MS', cursive; /* Fun font for names */
+    color: #d32f2f;
+    font-family: 'Comic Sans MS', cursive;
 }
 
 article strong {
@@ -72,38 +72,38 @@ article strong {
 
 /* General link style */
 a {
-    color: #1976d2; /* Blue for links */
+    color: #1976d2;
     text-decoration: none;
     font-weight: bold;
 }
 
 a:hover {
-    text-decoration: underline; /* Underline on hover */
+    text-decoration: underline;
 }
 
 /* Footer style */
 footer {
-    background-color: #ffeb3b; /* Bright yellow */
-    color: #1976d2; /* Blue */
+    background-color: #ffeb3b;
+    color: #1976d2;
     text-align: center;
     padding: 15px;
     font-size: 0.9rem;
-    border-top: 6px solid #f57f17; /* Darker yellow for top border */
+    border-top: 6px solid #f57f17;
 }
 
 /* Profile page styling */
 .profile-page {
-    max-width: 700px; /* Set a max width for the profile page */
-    margin: 20px auto; /* Center the profile page */
+    max-width: 700px;
+    margin: 20px auto;
     padding: 20px;
-    background-color: #ffffff; /* White background for profile page */
+    background-color: #ffffff;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .profile-header h1 {
     font-size: 2.5rem;
-    color: #d32f2f; /* Dark red */
+    color: #d32f2f;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -118,7 +118,7 @@ footer {
     max-width: 250px;
     height: auto;
     border-radius: 50%;
-    border: 5px solid #ffcc00; /* Gold border */
+    border: 5px solid #ffcc00;
 }
 
 /* Profile details */
@@ -133,52 +133,52 @@ footer {
 }
 
 .profile-details strong {
-    color: #d32f2f; /* Dark red for strong text */
+    color: #d32f2f;
 }
 
 /* Create Profile form styling */
 form {
-    max-width: 450px; /* Set a max width for the form */
-    margin: 20px auto; /* Center the form */
+    max-width: 450px;
+    margin: 20px auto;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+    background-color: rgba(255, 255, 255, 0.95);
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 form div {
-    margin-bottom: 15px; /* Space between form fields */
+    margin-bottom: 15px;
 }
 
 form label {
-    display: block; /* Stack labels above fields */
+    display: block;
     font-weight: bold;
-    color: #1976d2; /* Blue for labels */
+    color: #1976d2;
 }
 
 form input[type="text"],
 form input[type="email"],
 form input[type="url"] {
-    width: 100%; /* Full width input */
-    padding: 12px; /* Padding inside inputs */
-    border: 2px solid #ffcc00; /* Gold border */
-    border-radius: 10px; /* Rounded edges */
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ffcc00;
+    border-radius: 10px;
 }
 
 form button {
-    background-color: #ffcc00; /* Gold button */
-    color: #1976d2; /* Blue text */
+    background-color: #ffcc00;
+    color: #1976d2;
     border: none;
     padding: 12px 20px;
-    border-radius: 10px; /* Rounded button */
+    border-radius: 10px;
     cursor: pointer;
     font-weight: bold;
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+    transition: background-color 0.3s, color 0.3s;
 }
 
 form button:hover {
-    background-color: #1976d2; /* Change to blue on hover */
-    color: #ffcc00; /* Change text color to gold */
+    background-color: #1976d2;
+    color: #ffcc00;
 }
 
 /* Status message images styling */
@@ -190,11 +190,110 @@ form button:hover {
     margin: 5px; 
 }
 
+/* News feed styling */
+.news-feed {
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 
+.news-feed li {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.news-feed h1 {
+    text-align: center;
+    color: #d32f2f;
+}
+
+/* Friend suggestions styling */
 ul {
     list-style: none; 
     padding: 0; 
     display: flex; 
     flex-wrap: wrap;
     justify-content: center; 
+}
+
+.friend-item {
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+}
+
+.friend-item a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #1976d2;
+}
+
+.friend-item a:hover {
+    text-decoration: underline;
+}
+
+/* Friend suggestion styling */
+.friend-suggestions ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.friend-suggestion-item {
+    display: flex;
+    flex-direction: column; /* Stack name and button vertically */
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.friend-suggestion-item:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.friend-suggestion-item div {
+    margin: 5px 0; /* Space between name and button */
+}
+
+.friend-suggestion-item a {
+    color: #1976d2;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.friend-suggestion-item a:hover {
+    text-decoration: underline;
+}
+
+.logout-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh; /* Adjust as needed to center vertically */
+    text-align: center;
+}
+
+.logout-message h2 {
+    font-size: 1.5rem;
+    color: #333; /* Adjust color if needed */
+    margin-bottom: 15px;
+}
+
+.logout-message a {
+    font-size: 1.2rem;
+    color: #1976d2; /* Blue color for the link */
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.logout-message a:hover {
+    text-decoration: underline;
 }
