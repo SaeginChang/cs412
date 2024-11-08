@@ -1,0 +1,72 @@
+<!-- voter_analytics/templates/voter_analytics/graphs.html -->
+{% extends "voter_analytics/base.html" %}
+
+{% block content %}
+<h1>Voter Data Graphs</h1>
+
+<form method="get">
+    <label>Party Affiliation:</label>
+    <select name="party_affiliation">
+        <option value="">Any</option>
+        <option value="U">U</option>
+        <option value="D">D</option>
+        <option value="R">R</option>
+    </select>
+
+    <label>Minimum Date of Birth (Year):</label>
+    <select name="min_birth_year">
+        <option value="">Any</option>
+        {% for year in years %}
+            <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Maximum Date of Birth (Year):</label>
+    <select name="max_birth_year">
+        <option value="">Any</option>
+        {% for year in years %}
+            <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Voter Score:</label>
+    <select name="voter_score">
+        <option value="">Any</option>
+        {% for score in voter_scores %}
+            <option value="{{ score }}">{{ score }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Voted in 2020 State Election:</label>
+    <input type="checkbox" name="v20state" value="True">
+
+    <label>Voted in 2021 Town Election:</label>
+    <input type="checkbox" name="v21town" value="True">
+
+    <label>Voted in 2021 Primary:</label>
+    <input type="checkbox" name="v21primary" value="True">
+
+    <label>Voted in 2022 General Election:</label>
+    <input type="checkbox" name="v22general" value="True">
+
+    <label>Voted in 2023 Town Election:</label>
+    <input type="checkbox" name="v23town" value="True">
+
+    <button type="submit">Filter</button>
+</form>
+
+<div>
+    <h2>Distribution of Voters by Year of Birth</h2>
+    {{ birth_year_histogram_div|safe }}
+</div>
+
+<div>
+    <h2>Distribution of Voters by Party Affiliation</h2>
+    {{ party_pie_div|safe }}
+</div>
+
+<div>
+    <h2>Distribution of Voters by Election Participation</h2>
+    {{ election_participation_histogram_div|safe }}
+</div>
+{% endblock %}

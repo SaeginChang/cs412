@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'mini_fb',
     'restaurant',
+    'voter_analytics',
     'quotes',
     'blog',
     'marathon_analytics',

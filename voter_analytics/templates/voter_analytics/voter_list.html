@@ -1,0 +1,100 @@
+<!-- voter_analytics/templates/voter_analytics/voter_list.html -->
+{% extends "voter_analytics/base.html" %}
+
+{% block content %}
+<h1>Voter Records</h1>
+
+<form method="get">
+    <label>Party Affiliation:</label>
+    <select name="party_affiliation">
+        <option value="">Any</option>
+        <option value="U">U</option>
+        <option value="D">D</option>
+        <option value="R">R</option>
+    </select>
+
+    <label>Minimum Date of Birth (Year):</label>
+    <select name="min_birth_year">
+        <option value="">Any</option>
+        {% for year in years %}
+            <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Maximum Date of Birth (Year):</label>
+    <select name="max_birth_year">
+        <option value="">Any</option>
+        {% for year in years %}
+            <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Voter Score:</label>
+    <select name="voter_score">
+        <option value="">Any</option>
+        {% for score in voter_scores %}
+            <option value="{{ score }}">{{ score }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Voted in 2020 State Election:</label>
+    <input type="checkbox" name="v20state" value="True">
+
+    <label>Voted in 2021 Town Election:</label>
+    <input type="checkbox" name="v21town" value="True">
+
+    <label>Voted in 2021 Primary:</label>
+    <input type="checkbox" name="v21primary" value="True">
+
+    <label>Voted in 2022 General Election:</label>
+    <input type="checkbox" name="v22general" value="True">
+
+    <label>Voted in 2023 Town Election:</label>
+    <input type="checkbox" name="v23town" value="True">
+
+    <button type="submit">Filter</button>
+</form>
+
+<table>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Street Address</th>
+        <th>Date of Birth</th>
+        <th>Party Affiliation</th>
+        <th>Voter Score</th>
+        <th>Details</th>
+    </tr>
+    {% for voter in voters %}
+    <tr>
+        <td>{{ voter.first_name }}</td>
+        <td>{{ voter.last_name }}</td>
+        <td>{{ voter.street_number }} {{ voter.street_name }}</td>
+        <td>{{ voter.date_of_birth }}</td>
+        <td>{{ voter.party_affiliation }}</td>
+        <td>{{ voter.voter_score }}</td>
+        <td><a href="{% url 'voter' voter.pk %}">View Details</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% if is_paginated %}
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page=1">first</a>
+            <a href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ page_obj.next_page_number }}">next</a>
+            <a href="?{% if request.GET %}{{ request.GET.urlencode }}&{% endif %}page={{ page_obj.paginator.num_pages }}">last</a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
+{% endblock %}
