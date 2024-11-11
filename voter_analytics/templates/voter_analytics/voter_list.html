@@ -8,16 +8,24 @@
     <label>Party Affiliation:</label>
     <select name="party_affiliation">
         <option value="">Any</option>
-        <option value="U">U</option>
-        <option value="D">D</option>
-        <option value="R">R</option>
+        <option value="D" {% if party_affiliation == "D" %}selected{% endif %}>Democratic</option>
+        <option value="R" {% if party_affiliation == "R" %}selected{% endif %}>Republican</option>
+        <option value="CC" {% if party_affiliation == "CC" %}selected{% endif %}>Constitution Party</option>
+        <option value="L" {% if party_affiliation == "L" %}selected{% endif %}>Libertarian Party</option>
+        <option value="T" {% if party_affiliation == "T" %}selected{% endif %}>Tea Party</option>
+        <option value="G" {% if party_affiliation == "G" %}selected{% endif %}>Green Party</option>
+        <option value="J" {% if party_affiliation == "J" %}selected{% endif %}>Independent Party</option>
+        <option value="Q" {% if party_affiliation == "Q" %}selected{% endif %}>Reform Party</option>
+        <option value="FF" {% if party_affiliation == "FF" %}selected{% endif %}>Freedom Party</option>
+        <option value="O" {% if party_affiliation == "O" %}selected{% endif %}>Other</option>
     </select>
-
+    
+    <!-- Remaining filters -->
     <label>Minimum Date of Birth (Year):</label>
     <select name="min_birth_year">
         <option value="">Any</option>
         {% for year in years %}
-            <option value="{{ year }}">{{ year }}</option>
+            <option value="{{ year }}" {% if min_birth_year == year|stringformat:"s" %}selected{% endif %}>{{ year }}</option>
         {% endfor %}
     </select>
 
@@ -25,7 +33,7 @@
     <select name="max_birth_year">
         <option value="">Any</option>
         {% for year in years %}
-            <option value="{{ year }}">{{ year }}</option>
+            <option value="{{ year }}" {% if max_birth_year == year|stringformat:"s" %}selected{% endif %}>{{ year }}</option>
         {% endfor %}
     </select>
 
@@ -33,27 +41,29 @@
     <select name="voter_score">
         <option value="">Any</option>
         {% for score in voter_scores %}
-            <option value="{{ score }}">{{ score }}</option>
+            <option value="{{ score }}" {% if voter_score == score|stringformat:"s" %}selected{% endif %}>{{ score }}</option>
         {% endfor %}
     </select>
 
+    <!-- Election Participation Filters -->
     <label>Voted in 2020 State Election:</label>
-    <input type="checkbox" name="v20state" value="True">
+    <input type="checkbox" name="v20state" value="True" {% if v20state == "True" %}checked{% endif %}>
 
     <label>Voted in 2021 Town Election:</label>
-    <input type="checkbox" name="v21town" value="True">
+    <input type="checkbox" name="v21town" value="True" {% if v21town == "True" %}checked{% endif %}>
 
     <label>Voted in 2021 Primary:</label>
-    <input type="checkbox" name="v21primary" value="True">
+    <input type="checkbox" name="v21primary" value="True" {% if v21primary == "True" %}checked{% endif %}>
 
     <label>Voted in 2022 General Election:</label>
-    <input type="checkbox" name="v22general" value="True">
+    <input type="checkbox" name="v22general" value="True" {% if v22general == "True" %}checked{% endif %}>
 
     <label>Voted in 2023 Town Election:</label>
-    <input type="checkbox" name="v23town" value="True">
+    <input type="checkbox" name="v23town" value="True" {% if v23town == "True" %}checked{% endif %}>
 
     <button type="submit">Filter</button>
 </form>
+
 
 <table>
     <tr>

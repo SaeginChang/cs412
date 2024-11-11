@@ -24,13 +24,16 @@ class Voter(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name} ({self.precinct_number})"
 
+# Define valid party affiliations for validation
+VALID_PARTY_AFFILIATIONS = {'D', 'R', 'CC', 'L', 'T', 'O', 'G', 'J', 'Q', 'FF'}
+
 def load_data():
-    '''Load the data records from a CSV file, create Django model instances'''
+    '''Load the data records from a CSV file and create Django model instances'''
 
     # Delete all existing voter records to start fresh
     Voter.objects.all().delete()
 
-    # Define the path to your csv file
+    # Define the path to your CSV file
     filename = r"C:\Users\nickj\Documents\Work\CS412\newton_voters.csv"
     with open(filename, 'r', newline='', encoding='utf-8') as f:
         headers = f.readline().strip()  # Discard the header line
@@ -45,18 +48,26 @@ def load_data():
                 date_of_birth = parse_date(fields[7])
                 date_of_registration = parse_date(fields[8])
 
+                # Strip whitespace from party affiliation and validate
+                party_affiliation = fields[9].strip()
+                if party_affiliation not in VALID_PARTY_AFFILIATIONS:
+                    party_affiliation = 'O'  # Default to 'Other' if value is unrecognized
+
                 # Convert boolean fields
-                v20state = fields[10].strip().upper() == 'TRUE'
-                v21town = fields[11].strip().upper() == 'TRUE'
-                v21primary = fields[12].strip().upper() == 'TRUE'
-                v22general = fields[13].strip().upper() == 'TRUE'
-                v23town = fields[14].strip().upper() == 'TRUE'
+                v20state = fields[11].strip().upper() == 'TRUE'
+                v21town = fields[12].strip().upper() == 'TRUE'
+                v21primary = fields[13].strip().upper() == 'TRUE'
+                v22general = fields[14].strip().upper() == 'TRUE'
+                v23town = fields[15].strip().upper() == 'TRUE'
 
                 # Handle voter_score, converting non-numeric values to 0
                 try:
-                    voter_score = int(fields[15])
+                    voter_score = int(fields[16])
                 except ValueError:
                     voter_score = 0
+
+                # Correct index for precinct_number if necessary
+                precinct_number = fields[9] 
 
                 # Create a new instance of Voter using fields from CSV
                 voter = Voter(
@@ -68,8 +79,8 @@ def load_data():
                     zip_code=fields[6],
                     date_of_birth=date_of_birth,
                     date_of_registration=date_of_registration,
-                    party_affiliation=fields[9].strip(),
-                    precinct_number=fields[10],  # Make sure this matches CSV column index
+                    party_affiliation=party_affiliation,
+                    precinct_number=precinct_number,
                     v20state=v20state,
                     v21town=v21town,
                     v21primary=v21primary,

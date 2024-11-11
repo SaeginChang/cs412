@@ -8,9 +8,16 @@
     <label>Party Affiliation:</label>
     <select name="party_affiliation">
         <option value="">Any</option>
-        <option value="U">U</option>
-        <option value="D">D</option>
-        <option value="R">R</option>
+        <option value="D" {% if party_affiliation == "D" %}selected{% endif %}>Democratic</option>
+        <option value="R" {% if party_affiliation == "R" %}selected{% endif %}>Republican</option>
+        <option value="CC" {% if party_affiliation == "CC" %}selected{% endif %}>Constitution Party</option>
+        <option value="L" {% if party_affiliation == "L" %}selected{% endif %}>Libertarian Party</option>
+        <option value="T" {% if party_affiliation == "T" %}selected{% endif %}>Tea Party</option>
+        <option value="G" {% if party_affiliation == "G" %}selected{% endif %}>Green Party</option>
+        <option value="J" {% if party_affiliation == "J" %}selected{% endif %}>Independent Party</option>
+        <option value="Q" {% if party_affiliation == "Q" %}selected{% endif %}>Reform Party</option>
+        <option value="FF" {% if party_affiliation == "FF" %}selected{% endif %}>Freedom Party</option>
+        <option value="O" {% if party_affiliation == "O" %}selected{% endif %}>Other</option>
     </select>
 
     <label>Minimum Date of Birth (Year):</label>
