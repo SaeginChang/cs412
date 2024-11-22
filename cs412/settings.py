@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'hw',
     'formdata',
+    'db_examples',
     
 ]
 
