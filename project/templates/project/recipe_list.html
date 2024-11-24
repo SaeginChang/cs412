@@ -8,7 +8,11 @@
 <h1>Recipes</h1>
 <ul>
     {% for recipe in recipes %}
-        <li><a href="{% url 'recipe_detail' recipe.pk %}">{{ recipe.title }}</a></li>
+        <li>
+            <a href="{% url 'recipe_detail' recipe.pk %}">{{ recipe.title }}</a>
+            <p>Cooking Time: {{ recipe.cooking_time }} minutes</p>
+            <p>Difficulty: {{ recipe.difficulty_level }}</p>
+        </li>
     {% endfor %}
 </ul>
 <a href="{% url 'recipe_create' %}">Create a New Recipe</a>

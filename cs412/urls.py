@@ -30,6 +30,7 @@ urlpatterns = [
     path("mini_fb/", include("mini_fb.urls")),
     path("marathon_analytics/", include("marathon_analytics.urls")),
     path('accounts/', include('django.contrib.auth.urls')),
+    path("project/", include("project.urls")),
     
 ] 
 

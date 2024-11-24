@@ -1,0 +1,18 @@
+<!-- project/templates/project/mealplan_list.html -->
+
+{% extends "project/base.html" %}
+
+{% block title %}Meal Plan List{% endblock %}
+
+{% block content %}
+<h1>Meal Plans</h1>
+<ul>
+    {% for mealplan in mealplans %}
+        <li>
+            <a href="{% url 'mealplan_detail' mealplan.pk %}">Meal Plan for {{ mealplan.date }}</a>
+            <p>Created by: {{ mealplan.user.username }}</p>
+        </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'recipe_list' %}">Back to Recipe List</a>
+{% endblock %}
