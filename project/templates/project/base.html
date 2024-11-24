@@ -1,0 +1,30 @@
+<!-- project/templates/project/base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Recipe Sharing App{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="navbar">
+                <li><a href="{% url 'recipe_list' %}">Recipes</a></li>
+                <li><a href="{% url 'ingredient_list' %}">Ingredients</a></li>
+                <li><a href="{% url 'mealplan_list' %}">Meal Plans</a></li>
+                <li><a href="{% url 'admin:index' %}">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="content">
+            {% block content %}
+            
+            {% endblock %}
+        </div>
+    </main>
+</body>
+</html>

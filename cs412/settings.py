@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'project',
     'mini_fb',
     'restaurant',
     'voter_analytics',

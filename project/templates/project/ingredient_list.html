@@ -1,0 +1,15 @@
+<!-- project/templates/project/ingredient_list.html -->
+
+{% extends "project/base.html" %}
+
+{% block title %}Ingredient List{% endblock %}
+
+{% block content %}
+<h1>Ingredients</h1>
+<ul>
+    {% for ingredient in ingredients %}
+        <li>{{ ingredient.name }}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'recipe_list' %}">Back to Recipe List</a>
+{% endblock %}

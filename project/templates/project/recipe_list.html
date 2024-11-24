@@ -1,0 +1,15 @@
+<!-- project/templates/project/recipe_list.html -->
+
+{% extends "project/base.html" %}
+
+{% block title %}Recipe List{% endblock %}
+
+{% block content %}
+<h1>Recipes</h1>
+<ul>
+    {% for recipe in recipes %}
+        <li><a href="{% url 'recipe_detail' recipe.pk %}">{{ recipe.title }}</a></li>
+    {% endfor %}
+</ul>
+<a href="{% url 'recipe_create' %}">Create a New Recipe</a>
+{% endblock %}
