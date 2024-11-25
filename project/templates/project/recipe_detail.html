@@ -2,24 +2,20 @@
  
 {% extends "project/base.html" %}
 
-{% block title %}Recipe: {{ recipe.title }}{% endblock %}
+{% block title %}{{ recipe.title }}{% endblock %}
 
 {% block content %}
 <h1>{{ recipe.title }}</h1>
-<p>Description: {{ recipe.description }}</p>
 <p>Cooking Time: {{ recipe.cooking_time }} minutes</p>
 <p>Difficulty: {{ recipe.difficulty_level }}</p>
 <h2>Instructions</h2>
 <p>{{ recipe.instructions }}</p>
-
 <h2>Ingredients</h2>
 <ul>
-    {% for ingredient in recipe.recipeingredient_set.all %}
-        <li>{{ ingredient.quantity }} {{ ingredient.unit }} of {{ ingredient.ingredient.name }}</li>
+    {% for ingredient in recipe.ingredients.all %}
+        <li>{{ ingredient.name }}: {{ ingredient.quantity }}</li>
     {% endfor %}
 </ul>
-
-<a href="{% url 'recipe_update' recipe.pk %}">Edit Recipe</a>
-<a href="{% url 'recipe_delete' recipe.pk %}">Delete Recipe</a>
-<a href="{% url 'recipe_list' %}">Back to Recipe List</a>
+<a href="{% url 'update_recipe' recipe.pk %}">Edit</a> |
+<a href="{% url 'delete_recipe' recipe.pk %}">Delete</a>
 {% endblock %}

@@ -2,17 +2,31 @@
 
 {% extends "project/base.html" %}
 
-{% block title %}Meal Plan List{% endblock %}
+{% block title %}Meal Plans{% endblock %}
 
 {% block content %}
 <h1>Meal Plans</h1>
 <ul>
     {% for mealplan in mealplans %}
         <li>
-            <a href="{% url 'mealplan_detail' mealplan.pk %}">Meal Plan for {{ mealplan.date }}</a>
-            <p>Created by: {{ mealplan.user.username }}</p>
+            <h3>Meal Plan for {{ mealplan.date }}</h3>
+            <p>User: {{ mealplan.user.username }}</p>
+            <h4>Recipes:</h4>
+            <ul>
+                {% for mealplan_recipe in mealplan.mealplanrecipe_set.all %}
+                    <li>
+                        {{ mealplan_recipe.recipe.title }} (Servings: {{ mealplan_recipe.serving_size }})
+                    </li>
+                {% empty %}
+                    <li>No recipes added yet.</li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'update_mealplan' mealplan.pk %}">Edit Meal Plan</a> |
+            <a href="{% url 'add_recipes_to_mealplan' mealplan.pk %}">Add Recipes</a> |
+            <a href="{% url 'delete_mealplan' mealplan.pk %}">Delete Meal Plan</a>
         </li>
     {% endfor %}
 </ul>
-<a href="{% url 'recipe_list' %}">Back to Recipe List</a>
+<a href="{% url 'create_mealplan' %}">Create a New Meal Plan</a>
 {% endblock %}
+

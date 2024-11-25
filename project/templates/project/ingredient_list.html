@@ -2,14 +2,28 @@
 
 {% extends "project/base.html" %}
 
-{% block title %}Ingredient List{% endblock %}
+{% block title %}Ingredients{% endblock %}
 
 {% block content %}
 <h1>Ingredients</h1>
+
+<!-- Ingredient Form -->
+<h2>Add New Ingredient</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Ingredient</button>
+</form>
+
+<!-- List of Ingredients -->
+<h2>All Ingredients</h2>
 <ul>
     {% for ingredient in ingredients %}
-        <li>{{ ingredient.name }}</li>
+        <li>
+            {{ ingredient.name }}
+        </li>
+    {% empty %}
+        <li>No ingredients available.</li>
     {% endfor %}
 </ul>
-<a href="{% url 'recipe_list' %}">Back to Recipe List</a>
 {% endblock %}

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Recipe, MealPlan
+from .models import *
 
 class RecipeForm(forms.ModelForm):
     class Meta:
@@ -13,7 +13,17 @@ class RecipeForm(forms.ModelForm):
 class MealPlanForm(forms.ModelForm):
     class Meta:
         model = MealPlan
-        fields = ['user', 'date']  # Only include fields directly in the MealPlan model
+        fields = ['user', 'date'] 
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
         }
+
+class MealPlanRecipeForm(forms.ModelForm):
+    class Meta:
+        model = MealPlanRecipe
+        fields = ['recipe', 'serving_size']
+
+class IngredientForm(forms.ModelForm):
+    class Meta:
+        model = Ingredient
+        fields = ['name']

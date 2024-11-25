@@ -1,0 +1,17 @@
+<!-- project/templates/project/mealplan_form.html -->
+
+{% extends "project/base.html" %}
+
+{% block title %}
+    {{ form.instance.pk|default:"Create" }} Meal Plan
+{% endblock %}
+
+{% block content %}
+<h1>{{ form.instance.pk|default:"Create" }} Meal Plan</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+<a href="{% url 'mealplan_list' %}">Cancel</a>
+{% endblock %}

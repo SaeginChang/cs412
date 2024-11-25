@@ -2,10 +2,10 @@
 
 {% extends "project/base.html" %}
 
-{% block title %}{% if object %}Edit Recipe{% else %}Create Recipe{% endif %}{% endblock %}
+{% block title %}{{ form.instance.pk|default:"Create" }} Recipe{% endblock %}
 
 {% block content %}
-<h1>{% if object %}Edit Recipe{% else %}Create Recipe{% endif %}</h1>
+<h1>{{ form.instance.pk|default:"Create" }} Recipe</h1>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}

@@ -1,0 +1,15 @@
+<!-- project/templates/project/add_recipes_to_mealplan.html -->
+
+{% extends "project/base.html" %}
+
+{% block title %}Add Recipes to Meal Plan{% endblock %}
+
+{% block content %}
+<h1>Add Recipes to Meal Plan</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Recipe</button>
+</form>
+<a href="{% url 'mealplan_list' %}">Back to Meal Plans</a>
+{% endblock %}
