@@ -1,13 +1,22 @@
 from django import forms
 from .models import *
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
-        fields = ['title', 'description', 'cooking_time', 'difficulty_level', 'instructions', 'user']
+        fields = ['title', 'description', 'cooking_time', 'difficulty_level', 'user']
         widgets = {
             'description': forms.Textarea(attrs={'rows': 4}),
-            'instructions': forms.Textarea(attrs={'rows': 6}),
+        }
+
+class InstructionStepForm(forms.ModelForm):
+    class Meta:
+        model = InstructionStep
+        fields = ['step_number', 'description']
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 3}),
         }
 
 class MealPlanForm(forms.ModelForm):
@@ -27,3 +36,10 @@ class IngredientForm(forms.ModelForm):
     class Meta:
         model = Ingredient
         fields = ['name']
+
+class UserRegisterForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']

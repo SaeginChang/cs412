@@ -1,18 +1,29 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
+from .views import *
 
 urlpatterns = [
     # Authentication
-    path('login/', auth_views.LoginView.as_view(template_name='project/login.html'), name='login'),
+    path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='project/logout.html'), name='logout'),
+
+    # USER
+    path('register/', register_user, name='register'),
+    path('delete_account/', delete_user, name='delete_account'),
 
     # Home / Recipe URLs
     path('', views.RecipeListView.as_view(), name='recipe_list'),  # Home Page showing all recipes
-    path('recipe/<int:pk>/', views.RecipeDetailView.as_view(), name='show_recipe'),
+    path('recipe/<int:pk>/', views.RecipeDetailView.as_view(), name='recipe_detail'),
     path('recipe/create/', views.RecipeCreateView.as_view(), name='create_recipe'),
     path('recipe/<int:pk>/update/', views.RecipeUpdateView.as_view(), name='update_recipe'),
     path('recipe/<int:pk>/delete/', views.RecipeDeleteView.as_view(), name='delete_recipe'),
+
+    # Instructions URLs
+    path('recipe/<int:recipe_pk>/add-step/', AddInstructionStepView.as_view(), name='add_instruction_step'),
+    path('instruction/<int:pk>/update/', UpdateInstructionStepView.as_view(), name='update_instruction_step'),
+    path('instruction/<int:pk>/delete/', DeleteInstructionStepView.as_view(), name='delete_instruction_step'),
+
 
     # Ingredient URLs
     path('ingredients/', views.IngredientListView.as_view(), name='show_all_ingredients'),

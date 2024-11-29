@@ -7,10 +7,12 @@
 <ul>
     {% for recipe in recipes %}
         <li>
-            <strong>{{ recipe.title }}</strong> by {{ recipe.user.username|default:"Unknown" }}<br>
+            <a href="{% url 'recipe_detail' recipe.pk %}"><strong>{{ recipe.title }}</strong></a> 
+            by {{ recipe.user.username|default:"Unknown" }}<br>
             Cooking Time: {{ recipe.cooking_time }} minutes<br>
             Difficulty: {{ recipe.difficulty_level }}
         </li>
     {% endfor %}
 </ul>
 {% endblock %}
+

@@ -12,39 +12,55 @@
         <nav>
             <ul class="navbar">
                 <!-- Recipe List -->
-                 <li>
-                <a href="{% url 'recipe_list' %}">All Recipes</a>
+                <li>
+                    <a href="{% url 'recipe_list' %}">All Recipes</a>
                 </li>
                 
-                <li>
                 <!-- Recipe Create -->
-                <a href="{% url 'create_recipe' %}">Add New Recipe</a>
+                <li>
+                    <a href="{% url 'create_recipe' %}">Add New Recipe</a>
                 </li>
 
-                <li>
                 <!-- Meal Plan List -->
-                <a href="{% url 'mealplan_list' %}">Meal Plans</a>
+                <li>
+                    <a href="{% url 'mealplan_list' %}">Meal Plans</a>
                 </li>
 
-                <li>
                 <!-- Ingredient List -->
-                <a href="{% url 'show_all_ingredients' %}">Ingredients</a>
+                <li>
+                    <a href="{% url 'show_all_ingredients' %}">Ingredients</a>
                 </li>
 
-                <li>
-                <!-- Login Logout -->
+                <!-- Login/Logout -->
                 {% if user.is_authenticated %}
+                    <!-- Logout -->
+                    <li>
+                        <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit">Logout</button>
+                        </form>
+                    </li>
                     
-                    <form method="post" action="{% url 'logout' %}" style="display:inline;">
-                        {% csrf_token %}
-                        <button type="submit">Logout</button>
-                    </form>
-                    <li><p>Welcome {{ user.username }}</p></li>
+                    <!-- Delete Account -->
+                    <li>
+                        <a href="{% url 'delete_account' %}">Delete Account</a>
+                    </li>
+
+                    <!-- Welcome Message -->
+                    <li>
+                        <p>Welcome, {{ user.username }}</p>
+                    </li>
                 {% else %}
-                    <a href="{% url 'login' %}">Login</a>
+                    <!-- Login -->
+                    <li>
+                        <a href="{% url 'login' %}">Login</a>
+                    </li>
+                    
+                    <!-- Register -->
+                    <li>
+                        <a href="{% url 'register' %}">Register</a>
+                    </li>
                 {% endif %}
-                </li>
-                
             </ul>
         </nav>
     </header>

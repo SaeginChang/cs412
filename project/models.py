@@ -1,14 +1,15 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
-class User(models.Model):
-    '''Each of the users that are gonig to be seeing / inputting meals'''
-    username = models.CharField(max_length=100)
-    email = models.EmailField()
-    preferences = models.TextField(blank=True, null=True)
+# class User(models.Model):
+#     '''Each of the users that are gonig to be seeing / inputting meals'''
+#     username = models.CharField(max_length=100)
+#     email = models.EmailField()
+#     preferences = models.TextField(blank=True, null=True)
 
-    def __str__(self):
-        return self.username
+#     def __str__(self):
+#         return self.username
 
 class Recipe(models.Model):
     '''The recipes which is connected to the users and presents the basic summary of how to make'''
@@ -18,11 +19,23 @@ class Recipe(models.Model):
     difficulty_level = models.CharField(
         max_length=20, choices=[('Easy', 'Easy'), ('Medium', 'Medium'), ('Hard', 'Hard')]
     )
-    instructions = models.TextField()
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='recipes')
 
     def __str__(self):
         return self.title
+    
+class InstructionStep(models.Model):
+    ''' instructions for the recipe'''
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="steps")
+    step_number = models.PositiveIntegerField()
+    description = models.TextField()
+
+    class Meta:
+        ordering = ['step_number']
+
+        def __str__(self):
+            return f"Step {self.step_number} for {self.recipe.title}"
+
 
 class Ingredient(models.Model):
     '''Types of ingredients'''
