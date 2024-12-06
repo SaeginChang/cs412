@@ -1,0 +1,8 @@
+<!-- project/templates/project/no_permission.html -->
+{% extends "project/base.html" %}
+
+{% block content %}
+<h1>Access Denied</h1>
+<p>You do not have permission to edit this meal plan. Please log in with the correct account to access this page.</p>
+<a href="{% url 'mealplan_list' %}" class="btn btn-primary">Back to Meal Plans</a>
+{% endblock %}

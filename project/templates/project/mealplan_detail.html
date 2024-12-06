@@ -20,7 +20,7 @@
     {% endfor %}
 </ul>
 
-<a href="{% url 'add_recipes_to_mealplan' mealplan.pk %}">Add Recipes</a> |
-<a href="{% url 'update_mealplan' mealplan.pk %}">Edit Meal Plan</a> |
-<a href="{% url 'delete_mealplan' mealplan.pk %}">Delete Meal Plan</a>
+<a href="{% url 'add_recipes_to_mealplan' mealplan.pk %}" class="btn btn-primary">Add Recipes</a> |
+<a href="{% url 'update_mealplan' mealplan.pk %}" class="btn btn-primary">Edit Meal Plan</a> |
+<a href="{% url 'delete_mealplan' mealplan.pk %}" class="btn btn-primary">Delete Meal Plan</a>
 {% endblock %}

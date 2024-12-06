@@ -1,13 +1,12 @@
 <!-- project/templates/project/instruction_form.html -->
- 
 {% extends "project/base.html" %}
 
 {% block content %}
-<h2>Add Step to {{ recipe.title }}</h2>
+<h1>Add Instruction Step</h1>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Save</button>
-    <a href="{% url 'recipe_detail' recipe.id %}">Cancel</a>
+    <button type="submit" class="btn success">Save</button>
+    <a href="{% url 'recipe_detail' recipe.pk %}" class="btn danger">Cancel</a>
 </form>
 {% endblock %}

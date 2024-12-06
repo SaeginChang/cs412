@@ -2,31 +2,37 @@
 
 {% extends "project/base.html" %}
 
-{% block title %}Meal Plans{% endblock %}
-
 {% block content %}
-<h1>Meal Plans</h1>
-<ul>
-    {% for mealplan in mealplans %}
-        <li>
-            <h3>Meal Plan for {{ mealplan.date }}</h3>
-            <p>User: {{ mealplan.user.username }}</p>
-            <h4>Recipes:</h4>
-            <ul>
-                {% for mealplan_recipe in mealplan.mealplanrecipe_set.all %}
-                    <li>
-                        {{ mealplan_recipe.recipe.title }} (Servings: {{ mealplan_recipe.serving_size }})
-                    </li>
-                {% empty %}
-                    <li>No recipes added yet.</li>
-                {% endfor %}
-            </ul>
-            <a href="{% url 'update_mealplan' mealplan.pk %}">Edit Meal Plan</a> |
-            <a href="{% url 'add_recipes_to_mealplan' mealplan.pk %}">Add Recipes</a> |
-            <a href="{% url 'delete_mealplan' mealplan.pk %}">Delete Meal Plan</a>
-        </li>
-    {% endfor %}
-</ul>
-<a href="{% url 'create_mealplan' %}">Create a New Meal Plan</a>
-{% endblock %}
+<h1>All Meal Plans</h1>
 
+<div class="mealplan-grid">
+    {% for mealplan in mealplans %}
+    <div class="mealplan-card">
+        <h2>{{ mealplan.date|date:"l, F j, Y" }}</h2>
+        <p><strong>Created by:</strong> {{ mealplan.user.username }}</p>
+
+        {% if mealplan.mealplanrecipe_set.exists %}
+        <ul>
+            {% for meal in mealplan.mealplanrecipe_set.all %}
+            <li>
+                <strong>{{ meal.recipe.title }}</strong>
+                <p>Serving Size: {{ meal.serving_size }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No recipes added to this meal plan yet.</p>
+        {% endif %}
+
+        <div class="mealplan-actions">
+            <a href="{% url 'show_mealplan' mealplan.pk %}" class="btn btn-primary">View Meal Plan</a>
+            <a href="{% url 'update_mealplan' mealplan.pk %}" class="btn btn-warning">Edit</a>
+            <form method="post" action="{% url 'delete_mealplan' mealplan.pk %}" class="inline-form">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

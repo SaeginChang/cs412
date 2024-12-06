@@ -1,190 +1,504 @@
-/* General Styles */
+/* General Styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: #e3f2fd; /* Light blue-gray background */
+    color: #333; /* Text color */
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1, h2, h3 {
+    color: #444; /* Darker headings */
+}
+
+p {
+    line-height: 1.6;
+}
+
+/* Header Navigation Bar */
 header {
-    background-color: #007bff;
-    color: white;
-    padding: 1rem 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-header nav ul.navbar {
-    list-style: none;
     display: flex;
-    justify-content: space-around;
-    padding: 0;
-    margin: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #007BFF; /* Blue background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
 }
 
-header nav ul.navbar li {
+.navbar {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li {
+    position: relative; /* For dropdowns */
     margin: 0 10px;
 }
 
-header nav ul.navbar li a {
-    color: white;
-    text-decoration: none;
+.navbar a, .navbar button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0;
+    border-radius: 8px;
     font-weight: bold;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-header nav ul.navbar li a:hover {
+    color: white;
     background-color: #0056b3;
-}
-
-main {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-/* Forms */
-form {
-    margin: 2rem 0;
-    padding: 1rem;
-    background-color: #f1f1f1;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-form label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-form input,
-form textarea,
-form select,
-form button {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    box-sizing: border-box;
-}
-
-form input:focus,
-form textarea:focus,
-form select:focus {
-    border-color: #007bff;
-    outline: none;
-}
-
-form button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    font-weight: bold;
+    text-align: center;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar a:hover, .navbar button:hover {
+    background-color: #003f88;
+    transform: scale(1.05);
+}
+
+/* Dropdown Menu */
+.dropdown-content {
+    display: none; /* Hidden by default */
+    position: absolute;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    text-align: left;
+    min-width: 200px;
+    padding: 10px 0;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 15px;
+    color: #007BFF;
+    font-weight: bold;
+    text-decoration: none;
     transition: background-color 0.3s ease;
 }
 
-form button:hover {
-    background-color: #0056b3;
+.dropdown-content a:hover {
+    background-color: #f2f4f7;
+    color: #0056b3;
 }
 
-/* Tables */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
-table th,
-table td {
-    padding: 1rem;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-
-table th {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-}
-
-table tr:nth-child(even) {
-    background-color: #f9f9f9;
+/* Align Dropdown with Parent */
+.dropdown-content {
+    left: 0;
+    right: auto;
 }
 
 /* Buttons */
-button,
-a.button {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
+button, .btn {
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
+    padding: 10px 20px;
     font-size: 1rem;
-    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-button:hover,
-a.button:hover {
+/* Primary Buttons */
+button.primary, .btn.primary {
+    background-color: #007BFF; /* Blue */
+    color: white;
+}
+
+button.primary:hover, .btn.primary:hover {
     background-color: #0056b3;
 }
 
-/* Messages */
-.messages {
-    margin: 1rem 0;
-    padding: 1rem;
+/* Success Buttons */
+button.success, .btn.success {
+    background-color: #28a745; /* Green */
+    color: white;
+}
+
+button.success:hover, .btn.success:hover {
+    background-color: #218838;
+}
+
+/* Danger Buttons */
+button.danger, .btn.danger {
+    background-color: #dc3545; /* Red */
+    color: white;
+}
+
+button.danger:hover, .btn.danger:hover {
+    background-color: #c82333;
+}
+
+/* Warning Buttons */
+button.warning, .btn.warning {
+    background-color: #ffc107; /* Yellow */
+    color: white;
+}
+
+button.warning:hover, .btn.warning:hover {
+    background-color: #e0a800;
+}
+
+/* Info Buttons */
+button.info, .btn.info {
+    background-color: #17a2b8; /* Teal */
+    color: white;
+}
+
+button.info:hover, .btn.info:hover {
+    background-color: #117a8b;
+}
+
+/* Main Content */
+main {
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 10px;
+}
+
+/* Recipe Grid Layout */
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.recipe-card {
+    background-color: #ffffff; /* White background for each card */
+    border-radius: 12px; /* Rounded corners */
+    border: 1px solid #ddd; /* Subtle border for separation */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.recipe-card:hover {
+    transform: translateY(-10px); /* Lift effect on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
+}
+
+.recipe-title {
+    font-size: 1.4rem; /* Slightly larger font size */
+    font-weight: bold;
+    color: #007BFF; /* Blue text color for the title */
+    margin-bottom: 10px;
+}
+
+.recipe-title:hover {
+    color: #0056b3; /* Darker blue on hover */
+}
+
+.recipe-info {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+/* Buttons inside the recipe card */
+.recipe-card .btn {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 6px;
+    margin: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.recipe-card .btn.primary {
+    background-color: #007BFF;
+    color: white;
+}
+
+.recipe-card .btn.primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.recipe-card .btn.warning {
+    background-color: #FFC107; /* Yellow for edit */
+    color: white;
+}
+
+.recipe-card .btn.warning:hover {
+    background-color: #e6a600;
+    transform: scale(1.05);
+}
+
+.recipe-card .btn.danger {
+    background-color: #DC3545; /* Red for delete */
+    color: white;
+}
+
+.recipe-card .btn.danger:hover {
+    background-color: #b02a37;
+    transform: scale(1.05);
+}
+
+form {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+form label {
+    font-weight: bold;
+}
+
+form select, form button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: 1rem;
 }
 
-.messages.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+
+/* Button container for better alignment */
+.recipe-card .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
-.messages.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+.recipe-card .btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
-.messages.info {
-    background-color: #d1ecf1;
-    color: #0c5460;
-    border: 1px solid #bee5eb;
+.recipe-card .btn:hover {
+    transform: scale(1.05);
 }
+
+.recipe-card .btn.primary {
+    background-color: #007bff;
+}
+
+.recipe-card .btn.primary:hover {
+    background-color: #0056b3;
+}
+
+.recipe-card .btn.warning {
+    background-color: #ffc107;
+    color: black;
+}
+
+.recipe-card .btn.warning:hover {
+    background-color: #e0a800;
+}
+
+.recipe-card .btn.danger {
+    background-color: #dc3545;
+}
+
+.recipe-card .btn.danger:hover {
+    background-color: #c82333;
+}
+
+
+/* Weekly Meal Plan Grid */
+.weekly-mealplan {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.day-column {
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.day-column h3 {
+    background-color: #007BFF;
+    color: white;
+    padding: 5px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+/* Weekly Meal Plan Buttons */
+.weekly-mealplan .day-column ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.weekly-mealplan .day-column ul li {
+    margin: 10px 0;
+    text-align: left;
+}
+
+.weekly-mealplan .btn {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: block;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+}
+
+.weekly-mealplan .btn.primary {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.weekly-mealplan .btn.primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
 
 /* Footer */
 footer {
-    text-align: center;
-    padding: 1rem 0;
-    background-color: #007bff;
+    background-color: #007BFF;
     color: white;
-    margin-top: 2rem;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    header nav ul.navbar {
-        flex-direction: column;
-        align-items: center;
-    }
+/* Meal Plan Grid */
+.mealplan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
 
-    form {
-        padding: 0.5rem;
-    }
+/* Meal Plan Card */
+.mealplan-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+.mealplan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.mealplan-card h2 {
+    font-size: 1.4rem;
+    color: #007BFF;
+    margin-bottom: 10px;
+}
+
+.mealplan-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.mealplan-card li {
+    padding: 5px 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.mealplan-card li strong {
+    color: #333;
+}
+
+.mealplan-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inline-form {
+    display: inline;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+    cursor: pointer;
+    text-align: center;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #007BFF;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+button.add-step-btn {
+    background-color: #28a745; /* Green for "Add New Step" */
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button.add-step-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: scale(1.1); /* Slight zoom effect */
 }

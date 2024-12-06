@@ -11,59 +11,34 @@
     <header>
         <nav>
             <ul class="navbar">
-                <!-- Recipe List -->
-                <li>
-                    <a href="{% url 'recipe_list' %}">All Recipes</a>
+                <li><a href="{% url 'recipe_list' %}" class="btn primary">All Recipes</a></li>
+                <li><a href="{% url 'create_recipe' %}" class="btn success">Add New Recipe</a></li>
+                <li class="dropdown">
+                    <a href="#" class="btn info">Meal Plans</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'mealplan_list' %}">All Meal Plans</a>
+                        <a href="{% url 'mealplan_weekly' %}">Weekly Meal Plan</a>
+                        <a href="{% url 'create_mealplan' %}">Create New Meal Plan</a>
+                    </div>
                 </li>
-                
-                <!-- Recipe Create -->
-                <li>
-                    <a href="{% url 'create_recipe' %}">Add New Recipe</a>
-                </li>
-
-                <!-- Meal Plan List -->
-                <li>
-                    <a href="{% url 'mealplan_list' %}">Meal Plans</a>
-                </li>
-
-                <!-- Ingredient List -->
-                <li>
-                    <a href="{% url 'show_all_ingredients' %}">Ingredients</a>
-                </li>
-
-                <!-- Login/Logout -->
+                <li><a href="{% url 'show_all_ingredients' %}" class="btn warning">Ingredients</a></li>
                 {% if user.is_authenticated %}
-                    <!-- Logout -->
                     <li>
-                        <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                        <form method="post" action="{% url 'logout' %}" class="inline-form">
                             {% csrf_token %}
-                            <button type="submit">Logout</button>
+                            <button type="submit" class="btn danger logout-btn">Logout</button>
                         </form>
                     </li>
-                    
-                    <!-- Delete Account -->
-                    <li>
-                        <a href="{% url 'delete_account' %}">Delete Account</a>
-                    </li>
-
-                    <!-- Welcome Message -->
-                    <li>
-                        <p>Welcome, {{ user.username }}</p>
-                    </li>
+                    <li><a href="{% url 'delete_account' %}" class="btn danger">Delete Account</a></li>
+                    <li><p>Welcome, {{ user.username }}</p></li>
                 {% else %}
-                    <!-- Login -->
-                    <li>
-                        <a href="{% url 'login' %}">Login</a>
-                    </li>
-                    
-                    <!-- Register -->
-                    <li>
-                        <a href="{% url 'register' %}">Register</a>
-                    </li>
+                    <li><a href="{% url 'login' %}" class="btn primary">Login</a></li>
+                    <li><a href="{% url 'register' %}" class="btn success">Register</a></li>
                 {% endif %}
             </ul>
         </nav>
     </header>
+    
     <main>
         <div class="content">
             {% block content %}

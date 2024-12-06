@@ -4,20 +4,33 @@
 
 {% block content %}
 <h1>{{ recipe.title }}</h1>
-<p>{{ recipe.description }}</p>
-<p>Cooking Time: {{ recipe.cooking_time }} minutes</p>
-<p>Difficulty: {{ recipe.difficulty_level }}</p>
-<p>Created By: {{ recipe.user }}</p>
+<p><strong>Description:</strong> {{ recipe.description }}</p>
+<p><strong>Cooking Time:</strong> {{ recipe.cooking_time }} minutes</p>
+<p><strong>Difficulty:</strong> {{ recipe.difficulty_level }}</p>
+
+<h2>Ingredients</h2>
+<ul>
+    {% for recipe_ingredient in recipe.recipeingredient_set.all %}
+        <li>{{ recipe_ingredient.quantity }} {{ recipe_ingredient.unit }} of {{ recipe_ingredient.ingredient.name }}</li>
+    {% empty %}
+        <li>No ingredients added yet.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'add_ingredient_to_recipe' recipe.pk %}">
+    <button class="btn btn-primary">Add Ingredient</button>
+</a>
 
 <h2>Steps</h2>
 <ul>
     {% for step in recipe.steps.all %}
-        <li>
-            <strong>Step {{ step.step_number }}:</strong> {{ step.description }}
-            <a href="{% url 'update_instruction_step' step.id %}">Edit</a>
-            <a href="{% url 'delete_instruction_step' step.id %}">Delete</a>
-        </li>
+        <li><strong>Step {{ step.step_number }}:</strong> {{ step.description }}</li>
+    {% empty %}
+        <li>No steps added yet.</li>
     {% endfor %}
 </ul>
-<a href="{% url 'add_instruction_step' recipe.id %}">Add New Step</a>
+
+<a href="{% url 'add_instruction_step' recipe.pk %}">
+    <button class="btn btn-primary">Add New Step</button>
+</a>
 {% endblock %}

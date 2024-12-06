@@ -18,6 +18,7 @@ urlpatterns = [
     path('recipe/create/', views.RecipeCreateView.as_view(), name='create_recipe'),
     path('recipe/<int:pk>/update/', views.RecipeUpdateView.as_view(), name='update_recipe'),
     path('recipe/<int:pk>/delete/', views.RecipeDeleteView.as_view(), name='delete_recipe'),
+    path('recipe/<int:recipe_pk>/add-ingredient/', AddIngredientToRecipeView.as_view(), name='add_ingredient_to_recipe'),
 
     # Instructions URLs
     path('recipe/<int:recipe_pk>/add-step/', AddInstructionStepView.as_view(), name='add_instruction_step'),
@@ -31,10 +32,14 @@ urlpatterns = [
     # Meal Plan URLs
     path('mealplans/', views.MealPlanListView.as_view(), name='mealplan_list'),
     path('mealplan/<int:pk>/', views.MealPlanDetailView.as_view(), name='show_mealplan'),
+    path('mealplans/weekly/', MealPlanWeeklyView.as_view(), name='mealplan_weekly'),
 
     # Additional Views for Meal Plans
     path('mealplan/create/', views.CreateMealPlanView.as_view(), name='create_mealplan'),
     path('mealplan/<int:pk>/update/', views.UpdateMealPlanView.as_view(), name='update_mealplan'),
     path('mealplan/<int:pk>/delete/', views.DeleteMealPlanView.as_view(), name='delete_mealplan'),
     path('mealplan/<int:pk>/add-recipes/', views.AddRecipesToMealPlanView.as_view(), name='add_recipes_to_mealplan'),
+
+    # ETC
+    path('no-permission/', NoPermissionView.as_view(), name='custom_no_permission'),
 ]

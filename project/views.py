@@ -1,6 +1,7 @@
+from django.db.models.query import QuerySet
 from django.forms import BaseModelForm
 from django.http import HttpResponse
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import *
 from django.views.generic.edit import FormMixin
 from django.urls import reverse_lazy, reverse
 from .models import *
@@ -11,7 +12,9 @@ from django.contrib.auth.views import LoginView
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
-
+from collections import defaultdict
+from datetime import datetime, timedelta
+from django.utils.timezone import now
 
 # Recipe Views
 class RecipeListView(ListView):
@@ -19,6 +22,19 @@ class RecipeListView(ListView):
     template_name = 'project/recipe_list.html'
     context_object_name = 'recipes'
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        ingredient_filter = self.request.GET.get('ingredient')  # Get the ingredient from query params
+        if ingredient_filter:
+            queryset = queryset.filter(recipeingredient__ingredient__name__icontains=ingredient_filter)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['ingredients'] = Ingredient.objects.all()  # Pass all ingredients for dropdown
+        context['selected_ingredient'] = self.request.GET.get('ingredient', '')  # To keep track of the selected ingredient
+        return context
+    
 class RecipeDetailView(DetailView):
     model = Recipe
     template_name = 'project/recipe_detail.html'
@@ -46,24 +62,52 @@ class RecipeDeleteView(DeleteView):
     template_name = 'project/recipe_confirm_delete.html'
     success_url = reverse_lazy('recipe_list')
 
-# Instruction Views
-class AddInstructionStepView(CreateView):
-    model = InstructionStep
-    fields = ['step_number', 'description']
-    template_name = 'project/instruction_form.html'
+class AddIngredientToRecipeView(CreateView):
+    model = RecipeIngredient
+    form_class = RecipeIngredientForm
+    template_name = 'project/add_ingredient_form.html'
 
     def form_valid(self, form):
-        form.instance.recipe = get_object_or_404(Recipe, pk=self.kwargs['recipe_pk'])
+        recipe = get_object_or_404(Recipe, pk=self.kwargs['recipe_pk'])
+        form.instance.recipe = recipe
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('recipe_detail', kwargs={'pk': self.kwargs['recipe_pk']})
     
     def get_context_data(self, **kwargs):
-        # Add the recipe to the context
         context = super().get_context_data(**kwargs)
         context['recipe'] = get_object_or_404(Recipe, pk=self.kwargs['recipe_pk'])
         return context
-    
-    def get_success_url(self) -> str:
+
+
+# Instruction Views
+class AddInstructionStepView(CreateView):
+    model = InstructionStep
+    fields = ['description']
+    template_name = 'project/instruction_form.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        recipe = get_object_or_404(Recipe, pk=self.kwargs['recipe_pk'])
+        context['recipe'] = recipe
+        return context
+
+    def form_valid(self, form):
+        # Assign the recipe to the instruction step
+        recipe = get_object_or_404(Recipe, pk=self.kwargs['recipe_pk'])
+        form.instance.recipe = recipe
+
+        # Auto-increment the step number
+        last_step = InstructionStep.objects.filter(recipe=recipe).order_by('step_number').last()
+        next_step_number = last_step.step_number + 1 if last_step else 1
+        form.instance.step_number = next_step_number
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
         return reverse_lazy('recipe_detail', kwargs={'pk': self.kwargs['recipe_pk']})
+
     
 class UpdateInstructionStepView(UpdateView):
     model = InstructionStep
@@ -108,12 +152,22 @@ class MealPlanListView(LoginRequiredMixin, ListView):
     template_name = 'project/mealplan_list.html'
     context_object_name = 'mealplans'
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return render(request, 'project/please_login.html')
+        return super().dispatch(request, *args, **kwargs)
+
 class MealPlanDetailView(DetailView):
     model = MealPlan
     template_name = 'project/mealplan_detail.html'
     context_object_name = 'mealplan'
 
-class CreateMealPlanView(CreateView):
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return render(request, 'project/please_login.html') 
+        return super().dispatch(request, *args, **kwargs)
+
+class CreateMealPlanView(LoginRequiredMixin, CreateView):
     model = MealPlan
     form_class = MealPlanForm
     template_name = 'project/mealplan_form.html'
@@ -122,6 +176,11 @@ class CreateMealPlanView(CreateView):
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return render(request, 'project/please_login.html') 
+        return super().dispatch(request, *args, **kwargs)
     
 class AddRecipesToMealPlanView(CreateView):
     model = MealPlanRecipe
@@ -145,6 +204,12 @@ class UpdateMealPlanView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         mealplan = self.get_object()
         return self.request.user == mealplan.user # only allow owner to edit
 
+    def handle_no_permission(self):
+        # Redirect to a custom page when the user doesn't have permission
+        if self.request.user.is_authenticated:
+            return redirect('custom_no_permission')  # Use a named URL for your custom page
+        return super().handle_no_permission()  # Default behavior for non-authenticated users
+
 class DeleteMealPlanView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = MealPlan
     template_name = 'project/mealplan_confirm_delete.html'
@@ -154,6 +219,40 @@ class DeleteMealPlanView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             mealplan = self.get_object()
             return self.request.user == mealplan.user # only allow owner to delete
     
+class MealPlanWeeklyView(LoginRequiredMixin, TemplateView):
+    template_name = "project/mealplan_weekly.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        today = now().date()
+
+        # Calculate the start and end of the current week
+        start_of_week = today - timedelta(days=today.weekday())
+        end_of_week = start_of_week + timedelta(days=6)
+
+        # Initialize all days of the week
+        all_days = [start_of_week + timedelta(days=i) for i in range(7)]
+        weekly_meals = {day.strftime("%A"): [] for day in all_days}
+
+        # Fetch meal plans and group them by the day of the week
+        mealplans = MealPlan.objects.filter(
+            user=self.request.user,
+            date__gte=start_of_week,
+            date__lte=end_of_week
+        )
+        for mealplan in mealplans:
+            day_name = mealplan.date.strftime("%A")
+            meals = MealPlanRecipe.objects.filter(meal_plan=mealplan)
+            weekly_meals[day_name].extend(meals)
+
+        # Pass the ordered weekly meals
+        context["weekly_meals"] = weekly_meals
+        return context
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return render(request, 'project/please_login.html') 
+        return super().dispatch(request, *args, **kwargs)
 
 # Login Authentication Helper
 class CustomLoginView(LoginView):
@@ -181,3 +280,6 @@ def delete_user(request):
         messages.success(request, 'Your account has been deleted')
         return redirect('login')
     return render(request, 'project/delete_user.html')
+
+class NoPermissionView(TemplateView):
+    template_name = "project/no_permission.html"

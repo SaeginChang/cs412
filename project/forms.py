@@ -43,3 +43,12 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+class RecipeIngredientForm(forms.ModelForm):
+    class Meta:
+        model = RecipeIngredient
+        fields = ['ingredient', 'quantity', 'unit']
+        widgets = {
+            'quantity': forms.NumberInput(attrs={'placeholder': 'Enter quantity'}),
+            'unit': forms.Select(attrs={'placeholder': 'Select unit'}),
+        }

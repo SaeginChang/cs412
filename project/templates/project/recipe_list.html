@@ -1,18 +1,35 @@
 <!-- project/templates/project/recipe_list.html -->
-
 {% extends "project/base.html" %}
 
 {% block content %}
-<h1>Recipes</h1>
-<ul>
-    {% for recipe in recipes %}
-        <li>
-            <a href="{% url 'recipe_detail' recipe.pk %}"><strong>{{ recipe.title }}</strong></a> 
-            by {{ recipe.user.username|default:"Unknown" }}<br>
-            Cooking Time: {{ recipe.cooking_time }} minutes<br>
-            Difficulty: {{ recipe.difficulty_level }}
-        </li>
-    {% endfor %}
-</ul>
-{% endblock %}
+<h1>All Recipes</h1>
 
+<!-- Filter Form -->
+<form method="get" action="{% url 'recipe_list' %}">
+    <label for="ingredient">Filter by Ingredient:</label>
+    <select name="ingredient" id="ingredient">
+        <option value="">-- Select Ingredient --</option>
+        {% for ingredient in ingredients %}
+        <option value="{{ ingredient.name }}" {% if ingredient.name == selected_ingredient %}selected{% endif %}>
+            {{ ingredient.name }}
+        </option>
+        {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+
+<!-- Recipe Grid -->
+<div class="recipe-grid">
+    {% for recipe in recipes %}
+    <div class="recipe-card">
+        <h3 class="recipe-title">{{ recipe.title }}</h3>
+        <p>Cooking Time: {{ recipe.cooking_time }} minutes</p>
+        <p>Difficulty: {{ recipe.difficulty_level }}</p>
+        <p>Created by: {{ recipe.user.username }}</p>
+        <a href="{% url 'recipe_detail' recipe.pk %}" class="btn btn-primary">View Recipe</a>
+    </div>
+    {% empty %}
+    <p>No recipes match your filter criteria.</p>
+    {% endfor %}
+</div>
+{% endblock %}

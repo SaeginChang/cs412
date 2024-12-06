@@ -70,8 +70,11 @@ class MealPlanRecipe(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     serving_size = models.IntegerField(default=1)
     meal_type = models.CharField(
-        max_length=20, choices=[('Breakfast', 'Breakfast'), ('Lunch', 'Lunch'), ('Dinner', 'Dinner'), ('Snack', 'Snack')]
+        max_length=20,
+        choices=[('Breakfast', 'Breakfast'), ('Lunch', 'Lunch'), ('Dinner', 'Dinner'), ('Snack', 'Snack')]
     )
 
     def __str__(self):
-        return f"{self.meal_type}: {self.recipe.title} ({self.serving_size} servings)"
+        recipe_title = self.recipe.title if self.recipe else "No Recipe"
+        servings = f"{self.serving_size} servings" if self.serving_size else "No serving size"
+        return f"{recipe_title} ({servings})"

@@ -1,0 +1,26 @@
+<!-- project/templates/project/mealplan_weekly.html -->
+{% extends "project/base.html" %}
+
+{% block content %}
+<h1>Weekly Meal Plan</h1>
+
+<div class="weekly-mealplan">
+    {% for day, meals in weekly_meals.items %}
+    <div class="day-column">
+        <h3>{{ day }}</h3>
+        <ul>
+            {% for meal in meals %}
+                <li>
+                    <p><strong>{{ meal.recipe.title }}</strong></p>
+                    <p>Type: {{ meal.meal_type }}</p>
+                    <p>Serving Size: {{ meal.serving_size }}</p>
+                    <a href="{% url 'recipe_detail' meal.recipe.pk %}" class="btn primary">View Recipe</a>
+                </li>
+            {% empty %}
+                <p>No meals planned for this day.</p>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

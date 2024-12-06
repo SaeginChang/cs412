@@ -1,0 +1,9 @@
+<!-- project/templates/project/please_login.html -->
+
+{% extends "project/base.html" %}
+
+{% block content %}
+<h2>Please log in to view this page</h2>
+<p>You need to be logged in to access meal plans.</p>
+<a href="{% url 'login' %}" class="button">Log In</a>
+{% endblock %}
