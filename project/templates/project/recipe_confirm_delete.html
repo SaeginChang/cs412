@@ -11,5 +11,5 @@
     {% csrf_token %}
     <button type="submit">Yes, Delete</button>
 </form>
-<a href="{% url 'recipe_list' %}">Cancel</a>
+<a href="{% url 'recipe_list' %}" class="btn btn-primary">Cancel</a>
 {% endblock %}

@@ -219,6 +219,12 @@ class DeleteMealPlanView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             mealplan = self.get_object()
             return self.request.user == mealplan.user # only allow owner to delete
     
+    def handle_no_permission(self):
+        # Redirect to a custom page when the user doesn't have permission
+        if self.request.user.is_authenticated:
+            return redirect('custom_no_permission')  # Use a named URL for your custom page
+        return super().handle_no_permission()  # Default behavior for non-authenticated users
+    
 class MealPlanWeeklyView(LoginRequiredMixin, TemplateView):
     template_name = "project/mealplan_weekly.html"
 
