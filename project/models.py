@@ -1,3 +1,7 @@
+# File: models.py
+# Author: Nick Chang (nechang@bu.edu), 12/1/2024
+# Description: Models for the project to represent the data structures
+
 from django.db import models
 from django.contrib.auth.models import User
 

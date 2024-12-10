@@ -1,3 +1,7 @@
+# File: forms.py
+# Author: Nick Chang (nechang@bu.edu), 12/1/2024
+# Description: Forms to ask the user information that they can input
+
 from django import forms
 from .models import *
 from django.contrib.auth.models import User

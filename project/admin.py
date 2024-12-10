@@ -1,3 +1,7 @@
+# File: admin.py
+# Author: Nick Chang (nechang@bu.edu), 12/1/2024
+# Registering Models so that they can be managed
+
 from django.contrib import admin
 from .models import *
 

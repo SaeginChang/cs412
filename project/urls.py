@@ -1,3 +1,7 @@
+# File: urls.py
+# Author: Nick Chang, (nechang@bu.edu), 12/1/2024
+# Description: Mappling URLs to the corresponding views
+
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views

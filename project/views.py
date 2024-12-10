@@ -1,3 +1,7 @@
+# File: views.py
+# Author: Nick Chang (nechang@bu.edu), 12/1/2024
+# Description: views for logic for handling web requests and generating appropriate responses
+
 from django.db.models.query import QuerySet
 from django.forms import BaseModelForm
 from django.http import HttpResponse
